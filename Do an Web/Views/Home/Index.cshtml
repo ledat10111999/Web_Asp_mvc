@@ -1,0 +1,154 @@
+﻿@model List<Do_an_Web.Models.post>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section BigBanner{
+    <div class="banner">
+        <div class="container">
+            <!-- Slogan -->
+            <h1 class="display-5 text-center banner-title text-white font-weight-bold">
+                ĐÚNG NHÀ, ĐÚNG GIÁ, ĐÚNG THỜI
+                ĐIỂM
+            </h1>
+            <!-- Thanh tim kiem -->
+            <div class="row searching-bar blur-bg">
+                <div class="col-md-2 pt-3">
+                    <div class="form-group">
+                        <select id="inputState" class="form-control w-100">
+                            <option selected>Loại tin</option>
+                            <option>Phòng trọ, nhà trọ</option>
+                            <option>Nhà thuê nguyên căn</option>
+                            <option>Tìm người ở ghép</option>
+                            <option>Cho thuê căn hộ</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-2 pt-3">
+                    <div class="form-group">
+                        @Html.DropDownList("provinces", ViewBag.province as SelectList, "Chọn tỉnh", new { @class = " form-control w-100" })
+                    </div>
+                </div>
+
+                <div class="col-md-2 pt-3">
+                    <div class="form-group">
+                        @Html.DropDownList("districts", new SelectList(""), "Chọn quận", new { @class = " form-control w-100" })
+                    </div>
+                </div>
+
+                <div class="col-md-2 pt-3">
+                    <div class="form-group">
+                        @Html.DropDownList("wards", new SelectList(""), "Chọn phường", new { @class = " form-control w-100" })
+                    </div>
+                </div>
+
+                <div class="col-md-2 pt-3">
+                    <div class="form-group">
+                        <select id="inputState" class="form-control w-100">
+                            <option selected>Khoảng giá</option>
+                            <option>Dưới 1 triệu</option>
+                            <option>1 triệu - 2 triệu</option>
+                            <option>2 triệu - 3 triệu</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-2 pt-3">
+                    <button type="button" class="btn btn-primary btn-block">Lọc tin</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+@section Nav{
+    <div class="Nav2">
+        <nav class="navbar navbar-expend-sm nav-custom navbar-light bg-nav">
+            <div class="container justify-content-center">
+                <div class="row grid-divider">
+                    <div class="col-sm-12">
+                        <ul class="nav mr-auto">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link font-weight-bold text-white">
+                                    Trang
+                                    chủ
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link font-weight-bold text-white">
+                                    Cho thuê
+                                    phòng trọ
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link font-weight-bold text-white">
+                                    Nhà cho
+                                    thuê
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link font-weight-bold text-white">
+                                    Tìm người
+                                    ở ghép
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link font-weight-bold text-white">
+                                    Cho thuê
+                                    căn hộ
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link font-weight-bold text-white">
+                                    Hướng
+                                    dẫn
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link font-weight-bold text-white">
+                                    Nạp
+                                    tiền
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+}
+
+<h3>Tin nổi bật</h3>
+
+<div class="row ">
+    @foreach (var i in Model)
+    {
+        <div class="col-sm-6">
+            <a href="/DetailPost/Post/@i.ID" style="text-decoration: none; color: #000;">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="/UploadedFiles/@i.image" height="200" class="card-img" alt="">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">@i.TieuDe </h5>
+                                <p class="card-text font-weight-bold">Giá:@i.Gia </p>
+                                <p class="card-text">@i.NoiDung </p>
+                                <p class="card-text">@i.tenQuan - @i.tenTp </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+
+</div>
+@Scripts.Render("~/Scripts/searchbar.js")
+
+
+
+

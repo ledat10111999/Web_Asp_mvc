@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NhaTroModelStoreContainer" CdmEntityContainer="NhaTroEntities">
+    <EntitySetMapping Name="districts">
+      <EntityTypeMapping TypeName="NhaTroModel.district">
+        <MappingFragment StoreEntitySet="district">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="C_name" ColumnName="_name" />
+          <ScalarProperty Name="C_prefix" ColumnName="_prefix" />
+          <ScalarProperty Name="C_province_id" ColumnName="_province_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="imgs">
+      <EntityTypeMapping TypeName="NhaTroModel.img">
+        <MappingFragment StoreEntitySet="img">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="IDpost" ColumnName="IDpost" />
+          <ScalarProperty Name="IDimg" ColumnName="IDimg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="posts">
+      <EntityTypeMapping TypeName="NhaTroModel.post">
+        <MappingFragment StoreEntitySet="posts">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDimg" ColumnName="IDimg" />
+          <ScalarProperty Name="tenTp" ColumnName="tenTp" />
+          <ScalarProperty Name="tenQuan" ColumnName="tenQuan" />
+          <ScalarProperty Name="tenDuong" ColumnName="tenDuong" />
+          <ScalarProperty Name="tenPhuong" ColumnName="tenPhuong" />
+          <ScalarProperty Name="soNha" ColumnName="soNha" />
+          <ScalarProperty Name="DiaChiChinhXac" ColumnName="DiaChiChinhXac" />
+          <ScalarProperty Name="ThongTinMoTa" ColumnName="ThongTinMoTa" />
+          <ScalarProperty Name="DienTich" ColumnName="DienTich" />
+          <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="DoiTuongChoThue" ColumnName="DoiTuongChoThue" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+          <ScalarProperty Name="IDusers" ColumnName="IDusers" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="update_at" ColumnName="update_at" />
+          <ScalarProperty Name="display" ColumnName="display" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects">
+      <EntityTypeMapping TypeName="NhaTroModel.project">
+        <MappingFragment StoreEntitySet="project">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="C_name" ColumnName="_name" />
+          <ScalarProperty Name="C_province_id" ColumnName="_province_id" />
+          <ScalarProperty Name="C_district_id" ColumnName="_district_id" />
+          <ScalarProperty Name="C_lat" ColumnName="_lat" />
+          <ScalarProperty Name="C_lng" ColumnName="_lng" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="provinces">
+      <EntityTypeMapping TypeName="NhaTroModel.province">
+        <MappingFragment StoreEntitySet="province">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="C_name" ColumnName="_name" />
+          <ScalarProperty Name="C_code" ColumnName="_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="saveposts">
+      <EntityTypeMapping TypeName="NhaTroModel.savepost">
+        <MappingFragment StoreEntitySet="savepost">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDusers" ColumnName="IDusers" />
+          <ScalarProperty Name="IDpost" ColumnName="IDpost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="streets">
+      <EntityTypeMapping TypeName="NhaTroModel.street">
+        <MappingFragment StoreEntitySet="street">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="C_name" ColumnName="_name" />
+          <ScalarProperty Name="C_prefix" ColumnName="_prefix" />
+          <ScalarProperty Name="C_province_id" ColumnName="_province_id" />
+          <ScalarProperty Name="C_district_id" ColumnName="_district_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tests">
+      <EntityTypeMapping TypeName="NhaTroModel.test">
+        <MappingFragment StoreEntitySet="test">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ten" ColumnName="ten" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="NhaTroModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="QuyenHan" ColumnName="QuyenHan" />
+          <ScalarProperty Name="money" ColumnName="money" />
+          <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+          <ScalarProperty Name="Update_at" ColumnName="Update_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="wards">
+      <EntityTypeMapping TypeName="NhaTroModel.ward">
+        <MappingFragment StoreEntitySet="ward">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="C_name" ColumnName="_name" />
+          <ScalarProperty Name="C_prefix" ColumnName="_prefix" />
+          <ScalarProperty Name="C_province_id" ColumnName="_province_id" />
+          <ScalarProperty Name="C_district_id" ColumnName="_district_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="get_infor_users" FunctionName="NhaTroModel.Store.get_infor_users">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="NhaTroModel.get_infor_users_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="QuyenHan" ColumnName="QuyenHan" />
+          <ScalarProperty Name="money" ColumnName="money" />
+          <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+          <ScalarProperty Name="Update_at" ColumnName="Update_at" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

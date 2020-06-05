@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Session["ID"] != null)
+{
+
+    @Html.AntiForgeryToken();
+    <li class="nav-item nav-username">
+        <div class="btn-group">
+            <button type="button" class="btn btn-outline-primary dropdown-toggle font-weight-bold "
+                    data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                @Session["username"].ToString()
+                </button>
+                <div class="dropdown-menu">
+                    <a href="#" class="dropdown-item">Thông tin tài khoản</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="" class="dropdown-item">Bài viết đã đăng</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="" class="dropdown-item">Bài viết đã lưu</a>
+                    <div class="dropdown-divider"></div>
+                    <button class="signout dropdown-item" id="signout">Đăng xuất</button>
+                </div>
+            </div>
+        </li>
+        if (Session["QuyenHan"].ToString() == "admin")
+        {
+            <li style="margin-right: 10px;" class="nav-item  font-weight-bold ">
+                <a href="/admin ">  Trang quản trị </a>
+            </li>
+        }
+        <li class="nav-item">
+            @Html.ActionLink("Đăng tin", "NewPost", "Post",routeValues:null ,htmlAttributes: new {@class = "nav-item  font-weight-bold " })
+        </li>
+        <!-- <li class="nav-item"><a href="#" class="nav-link"> Chào mừng <%=data.sign.ho  %>  <%=data.sign.ten  %>  </a></li>
+                    <li class="nav-item"><a href="DangTin"><button class="btn btn-primary font-weight-bold">Đăng tin</button></a></li>-->
+
+
+
+    }
+    else
+    {
+        <li class="nav-item font-weight-bold">@Html.ActionLink("Đăng Nhập", "signin", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link" })</li>
+        <li class="nav-item font-weight-bold">@Html.ActionLink("Đăng Ký", "signup", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link" })</li>
+    }

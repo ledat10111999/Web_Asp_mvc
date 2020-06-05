@@ -1,0 +1,23 @@
+/* NAV */
+/* .nav-custom .nav-item:hover, .nav-link:hover{
+    background-color: #fd7e14;
+    border-radius: 10px;
+} */
+
+.bg-nav{
+    background-color: #007bff;
+}
+
+section{
+    margin-top: 20px;
+}
+
+.sidebar-item{
+    position: fixed;
+}
+
+.sticky{
+    position: sticky;
+    top: 0;
+    padding: 0 15px;
+}

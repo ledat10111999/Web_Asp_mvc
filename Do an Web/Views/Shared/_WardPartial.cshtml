@@ -1,0 +1,11 @@
+﻿@model Do_an_Web.Models.ward
+<option value=" ">Chọn Phường</option>
+@if (ViewBag.Ward != null)
+{
+
+    foreach (var i in ViewBag.Ward)
+    {
+        <option value="@i.Value">@i.Text</option>
+    }
+}
+

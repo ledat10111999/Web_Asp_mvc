@@ -1,0 +1,15 @@
+﻿@model Do_an_Web.Models.street
+<option value="">Chọn Đường</option>
+@if (ViewBag.Street != null)
+{
+
+    foreach (var i in ViewBag.Street)
+    {
+        <option value="@i.Value">@i.Text</option>
+    }
+}
+
+
+
+
+

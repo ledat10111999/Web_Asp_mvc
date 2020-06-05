@@ -1,0 +1,14 @@
+﻿@model Do_an_Web.Models.district
+<option value=" ">Chọn Quận</option>
+@if (ViewBag.District != null)
+{
+
+    foreach (var i in ViewBag.District)
+    {
+        <option value="@i.Value">@i.Text</option>
+    }
+}
+
+    
+
+

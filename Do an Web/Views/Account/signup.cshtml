@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "signup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Styles.Render("~/Content/registerPage");
+}
+@model Do_an_Web.Models.register
+
+    <div id="register">
+        <div class="container">
+            <!-- Canh lề -->
+            <div id="register-row" class="row justify-content-center align-item-center">
+                <div id="register-column" class="col-md-6">
+                    <!-- Khung đăng nhập -->
+                    <div id="register-box" class="col-md-12">
+                        @using (Html.BeginForm("signup", "Account", FormMethod.Post, htmlAttributes: new { id = "register-form", @class = "form" }))
+                        {
+                            @Html.AntiForgeryToken();
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <h3 class="text-center text-info">Đăng Ký</h3>
+                            <!-- FirstName -->
+                            <div class="form-group">
+                                <label for="username" class="text-info font-weight-bold">Họ:</label><br>
+                                @Html.TextBoxFor(x => x.First_name, htmlAttributes: new { id = "first_name", @class = "form-control", @type = "text" })
+                                @Html.ValidationMessageFor(x => x.First_name, "", new { @class = "text-danger" })
+
+                            </div>
+                            <!-- LastName -->
+                            <div class="form-group">
+                                <label for="username" class="text-info font-weight-bold">Tên:</label><br>
+                                @Html.TextBoxFor(x => x.Last_name, htmlAttributes: new { id = "last_name", @class = "form-control", @type = "text" })
+                                @Html.ValidationMessageFor(x => x.Last_name, "", new { @class = "text-danger" })
+                            </div>
+                            <!-- Tên đăng nhập -->
+                    <div class="form-group">
+                        <label for="username" class="text-info font-weight-bold">Tên đăng nhập:</label><br>
+                        @Html.TextBoxFor(x => x.Email, htmlAttributes: new { id = "email", @class = "form-control", @type = "text" })
+                        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                      
+                    </div>
+                            <!-- Số điện thoại -->
+                            <div class="form-group">
+                                <label for="username" class="text-info font-weight-bold">Số điện thoại:</label><br>
+                                @Html.TextBoxFor(x => x.SDT, htmlAttributes: new { id = "phonenumber", @class = "form-control", @type = "text" })
+                                @Html.ValidationMessageFor(x => x.SDT, "", new { @class = "text-danger" })
+                            </div>
+                            <!-- Mật khẩu -->
+                            <div class="form-group">
+                                <label for="password" class="text-info font-weight-bold">Mật khẩu:</label><br>
+                                @Html.PasswordFor(x => x.Pass, new { id = "password", @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Pass, "", new { @class = "text-danger" })
+                            </div>
+                            <!--Nhập lại Mật khẩu -->
+                            <div class="form-group">
+                                <label for="password" class="text-info font-weight-bold">Mật khẩu:</label><br>
+                                @Html.PasswordFor(x => x.confirmpass, new { id = "repassword", @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.confirmpass, "", new { @class = "text-danger" })
+                               
+
+
+                            </div>
+                            <!-- Nút đăng ký -->
+                            <div class="form-group text-center">
+                                <input type="submit" name="submit" id="submit" class="btn btn-info btn-md font-weight-bold" value="Đăng ký">
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

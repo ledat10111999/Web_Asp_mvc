@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "signin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Do_an_Web.Models.login
+
+
+<div id="login">
+    <div class="container">
+        <!-- Canh lề -->
+        <div id="login-row" class="row justify-content-center align-item-center">
+            <div id="login-column" class="col-md-6">
+                <!-- Khung đăng nhập -->
+                <div id="login-box" class="col-md-12">
+                    @using (Html.BeginForm("signin", "Account", FormMethod.Post, new { id = "login-form", @class = "form" }))
+                    {
+                        {
+                            @Html.AntiForgeryToken();
+
+
+                            <h3 class="text-center text-info">Đăng nhập</h3>
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <!-- Tên đăng nhập -->
+                            <div class="form-group">
+                                <label for="username" class="text-info font-weight-bold">Tên đăng nhập:</label><br>
+                               
+                                @Html.TextBoxFor(x => x.Email, new { id = "username", @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <!-- Mật khẩu -->
+                            <div class="form-group">
+                                <label for="password" class="text-info font-weight-bold">Mật khẩu:</label><br>
+                                @Html.TextBoxFor(x => x.Pass, new { id = "username", @class = "form-control", @type = "password" })
+                                @Html.ValidationMessageFor(x => x.Pass, "", new { @class = "text-danger" })
+                            </div>
+                            <!-- Lưu mật khẩu và nút đăng nhập -->
+                            <div class="form-group">
+                                <label for="rememberme" class="text-info font-weight-bold">
+                                    <span>Nhớ mật khẩu</span>
+                                    <span><input type="checkbox" name="rememberme" id="rememberme"></span>
+                                </label><br>
+                                <div class="text-center">
+                                   
+                                    <button type="submit" name="submit" id="submit"
+                                            class="btn btn-info btn-md font-weight-bold">
+                                        Đăng nhập
+                                    </button>
+
+                                </div>
+                            </div>
+                            <!-- link đăng ký -->
+                            <div id="register-link" class="text-right">
+                                @Html.ActionLink("Đăng ký", "signup", "Account", routeValues: null, htmlAttributes: new { @class = "text-info font-weight-bold" })
+                            </div>
+
+                        }
+                    }
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

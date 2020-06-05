@@ -1,0 +1,29 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #007bff;
+    height: 100vh;
+}
+
+#register .container #register-row #register-column #register-box{
+    margin-top: 50px;
+    max-width: 600px;
+    padding: 20px;
+    height: 470px;
+    border: 1px solid #9c9c9c;
+    border-radius: 10px;
+    background-color: #eaeaea;
+}
+
+#register .container #register-row #register-column #register-box{
+    padding: 20px;
+}
+
+.nav-custom .nav-item:hover, .nav-link:hover{
+    background-color: red;
+    border-radius: 10px;
+}
+
+.bg-nav{
+    background-color: #20c997;
+}

@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NhaTroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="district">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="_name" Type="nvarchar" MaxLength="100" />
+    <Property Name="_prefix" Type="nvarchar" MaxLength="20" />
+    <Property Name="_province_id" Type="bigint" />
+  </EntityType>
+  <EntityType Name="img">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="image" Type="nvarchar" MaxLength="100" />
+    <Property Name="IDpost" Type="int" />
+    <Property Name="IDimg" Type="int" />
+  </EntityType>
+  <EntityType Name="posts">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="IDimg" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDimg" Type="int" Nullable="false" />
+    <Property Name="tenTp" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="tenQuan" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="tenDuong" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="tenPhuong" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="soNha" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="DiaChiChinhXac" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="ThongTinMoTa" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="DienTich" Type="int" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="NoiDung" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="DoiTuongChoThue" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="Gia" Type="int" />
+    <Property Name="IDusers" Type="int" Nullable="false" />
+    <Property Name="image" Type="nvarchar" MaxLength="100" />
+    <Property Name="SDT" Type="int" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="update_at" Type="datetime" />
+    <Property Name="display" Type="bit" />
+  </EntityType>
+  <EntityType Name="project">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="_name" Type="nvarchar" MaxLength="200" />
+    <Property Name="_province_id" Type="bigint" />
+    <Property Name="_district_id" Type="bigint" />
+    <Property Name="_lat" Type="float" />
+    <Property Name="_lng" Type="float" />
+  </EntityType>
+  <EntityType Name="province">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="_code" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="savepost">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDusers" Type="int" Nullable="false" />
+    <Property Name="IDpost" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="street">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="_name" Type="nvarchar" MaxLength="100" />
+    <Property Name="_prefix" Type="nvarchar" MaxLength="20" />
+    <Property Name="_province_id" Type="bigint" />
+    <Property Name="_district_id" Type="bigint" />
+  </EntityType>
+  <EntityType Name="test">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="ten" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="Pass" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="First_name" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="Last_name" Type="nvarchar" MaxLength="45" Nullable="false" />
+    <Property Name="SDT" Type="int" Nullable="false" />
+    <Property Name="QuyenHan" Type="nvarchar" MaxLength="10" />
+    <Property Name="money" Type="decimal" Precision="15" Scale="2" />
+    <Property Name="Created_at" Type="datetime2" Precision="0" />
+    <Property Name="Update_at" Type="datetime2" Precision="0" />
+  </EntityType>
+  <EntityType Name="ward">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="_prefix" Type="nvarchar" MaxLength="20" />
+    <Property Name="_province_id" Type="bigint" />
+    <Property Name="_district_id" Type="bigint" />
+  </EntityType>
+  <Association Name="img$fk_img">
+    <End Role="posts" Type="Self.posts" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="img" Type="Self.img" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="posts">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="IDimg" />
+      </Principal>
+      <Dependent Role="img">
+        <PropertyRef Name="IDpost" />
+        <PropertyRef Name="IDimg" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="posts$fk_IDuser">
+    <End Role="users" Type="Self.users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="posts" Type="Self.posts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="posts">
+        <PropertyRef Name="IDusers" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="savepost$fk_users">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="savepost" Type="Self.savepost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="savepost">
+        <PropertyRef Name="IDusers" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="get_infor_users" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="NhaTroModelStoreContainer">
+    <EntitySet Name="district" EntityType="Self.district" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="img" EntityType="Self.img" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="posts" EntityType="Self.posts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="project" EntityType="Self.project" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="province" EntityType="Self.province" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="savepost" EntityType="Self.savepost" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="street" EntityType="Self.street" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="test" EntityType="Self.test" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ward" EntityType="Self.ward" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="img$fk_img" Association="Self.img$fk_img">
+      <End Role="posts" EntitySet="posts" />
+      <End Role="img" EntitySet="img" />
+    </AssociationSet>
+    <AssociationSet Name="posts$fk_IDuser" Association="Self.posts$fk_IDuser">
+      <End Role="users" EntitySet="users" />
+      <End Role="posts" EntitySet="posts" />
+    </AssociationSet>
+    <AssociationSet Name="savepost$fk_users" Association="Self.savepost$fk_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="savepost" EntitySet="savepost" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

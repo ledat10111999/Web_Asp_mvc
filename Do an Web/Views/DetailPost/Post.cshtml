@@ -1,0 +1,137 @@
+﻿@model Do_an_Web.Models.post
+
+@{
+    ViewBag.Title = "Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <!-- Tên thông tin phòng trọ -->
+    <div class="container">
+        <h3 class="text-danger">@Html.DisplayFor(p=> p.TieuDe) </h3>
+    </div>
+    <!-- Menu tùy chỉnh phòng trọ -->
+    <nav class="navbar navbar-expend-sm navbar-light bg-light" style="margin-top: 20px;">
+        <div class="container">
+            <div class="row grid-divider mr-auto">
+                <div class="col-md-12">
+                    <ul class="nav mr-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link font-weight-bold text-info">
+                                Thông tin
+                                chung
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link font-weight-bold text-info">
+                                Mô tả chi
+                                tiết
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link font-weight-bold text-info">Hình ảnh</a>
+                        </li>
+                        @if (Session["ID"] != null && Int32.Parse(Session["ID"].ToString()) == Model.IDusers)
+                        {
+                            <li class="nav-item">
+                                
+                                @Html.ActionLink("Sửa tin", "UpdatePost","Post", new { id=Model.ID},new {@class = "nav-link font-weight-bold text-info",id = "updatePost" })
+                            </li>
+                            <li class="nav-item" id="deletepost"><button class=" btn btn-link  font-weight-bold text-info " style="text-decoration: none;"> Xóa tin</button></li>
+                        }else if(Session["ID"] !=null  )
+                        {
+                            if (ViewBag.SavePost != null && ViewBag.SavePost.IDusers == Int32.Parse(Session["ID"].ToString())) {
+                        <li class="nav-item" id="deleteSavePost">
+                            <a href=""
+                               class="nav-link font-weight-bold text-info"> Bỏ Lưu</a>
+                        </li>
+                        }else {
+                        <li class="nav-item" id="savepost">
+                            <a href=""
+                               class="nav-link font-weight-bold text-info">Lưu bài</a>
+                        </li>} 
+                        
+                        } 
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="margin-top: 10px;">
+        <div class="row">
+            <div class="col-md-8">
+
+                <input type="text" hidden value="<%=data.results[0].ID  %>" id="IDpost">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <!-- Địa chỉ -->
+                            <th scope="row">Địa Chỉ</th>
+                            <td colspan="3">
+                                @Model.tenPhuong - @Model.tenQuan - @Model.tenTp
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Loại tin rao</th>
+                            <td colspan="3" class="text-info font-weight-bold">
+                                @Model.ThongTinMoTa
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Mã tin</th>
+                            <td>@Model.ID</td>
+                            <th>Người đăng</th>
+                            <td>@Model.user.Last_name @Model.user.First_name</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Đối tượng</th>
+                            <td>@Model.DoiTuongChoThue</td>
+                            <th>Số điện thoại</th>
+                            <td>0</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Ngày đăng</th>
+                            <td>@Model.created_at</td>
+                            <th>Diện tích</th>
+                            <td>@Model.DienTich m2</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Ngày cập nhật</th>
+                            <td>@Model.update_at </td>
+                            <th>Giá cho thuê</th>
+                            <td>@Model.Gia</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                <img src="~/UploadedFiles/@Model.image" alt="">
+            </div>
+   
+            <div class="col-md-4">
+                <div class="rentAlert">
+                    <div class="alert alert-warning">
+                        <h5>Lưu ý khi đăng tin</h5>
+                        <p>
+                            1. Nội dung phải viết bằng tiếng Việt có dấu <br>
+                            2. Tiêu đề tin không dài quá 100 kí tự <br>
+                            3. Các bạn nên điền đầy đủ thông tin vào các mục để tin đăng có hiệu quả hơn. <br>
+                            4. Để tăng độ tin cậy và tin rao được nhiều người quan tâm hơn, hãy sửa vị trí tin
+                            rao
+                            của
+                            bạn trên bản đồ bằng cách kéo icon tới đúng vị trí của tin rao. <br>
+                            5. Tin đăng có hình ảnh rõ ràng sẽ được xem và gọi gấp nhiều lần so với tin rao
+                            không có
+                            ảnh. Hãy đăng ảnh để được giao dịch nhanh chóng! <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

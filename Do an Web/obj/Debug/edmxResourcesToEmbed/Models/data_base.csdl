@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NhaTroModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="district">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="C_prefix" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="C_province_id" Type="Int64" />
+  </EntityType>
+  <EntityType Name="img">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IDpost" Type="Int32" />
+    <Property Name="IDimg" Type="Int32" />
+    <NavigationProperty Name="post" Relationship="Self.img_fk_img" FromRole="img" ToRole="posts" />
+  </EntityType>
+  <EntityType Name="post">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="IDimg" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDimg" Type="Int32" Nullable="false" />
+    <Property Name="tenTp" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tenQuan" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tenDuong" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tenPhuong" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="soNha" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DiaChiChinhXac" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ThongTinMoTa" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DienTich" Type="Int32" />
+    <Property Name="TieuDe" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NoiDung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DoiTuongChoThue" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gia" Type="Int32" />
+    <Property Name="IDusers" Type="Int32" Nullable="false" />
+    <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="Int32" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="update_at" Type="DateTime" Precision="3" />
+    <Property Name="display" Type="Boolean" />
+    <NavigationProperty Name="imgs" Relationship="Self.img_fk_img" FromRole="posts" ToRole="img" />
+    <NavigationProperty Name="user" Relationship="Self.posts_fk_IDuser" FromRole="posts" ToRole="users" />
+  </EntityType>
+  <EntityType Name="project">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="C_province_id" Type="Int64" />
+    <Property Name="C_district_id" Type="Int64" />
+    <Property Name="C_lat" Type="Double" />
+    <Property Name="C_lng" Type="Double" />
+  </EntityType>
+  <EntityType Name="province">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="savepost">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDusers" Type="Int32" Nullable="false" />
+    <Property Name="IDpost" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="user" Relationship="Self.savepost_fk_users" FromRole="savepost" ToRole="users" />
+  </EntityType>
+  <EntityType Name="street">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="C_prefix" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="C_province_id" Type="Int64" />
+    <Property Name="C_district_id" Type="Int64" />
+  </EntityType>
+  <EntityType Name="test">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="ten" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="First_name" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Last_name" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SDT" Type="Int32" Nullable="false" />
+    <Property Name="QuyenHan" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="money" Type="Decimal" Precision="15" Scale="2" />
+    <Property Name="Created_at" Type="DateTime" Precision="0" />
+    <Property Name="Update_at" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="posts" Relationship="Self.posts_fk_IDuser" FromRole="users" ToRole="posts" />
+    <NavigationProperty Name="saveposts" Relationship="Self.savepost_fk_users" FromRole="users" ToRole="savepost" />
+  </EntityType>
+  <EntityType Name="ward">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="C_prefix" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="C_province_id" Type="Int64" />
+    <Property Name="C_district_id" Type="Int64" />
+  </EntityType>
+  <Association Name="img_fk_img">
+    <End Role="posts" Type="Self.post" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="img" Type="Self.img" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="posts">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="IDimg" />
+      </Principal>
+      <Dependent Role="img">
+        <PropertyRef Name="IDpost" />
+        <PropertyRef Name="IDimg" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="posts_fk_IDuser">
+    <End Role="users" Type="Self.user" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="posts" Type="Self.post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="posts">
+        <PropertyRef Name="IDusers" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="savepost_fk_users">
+    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="savepost" Type="Self.savepost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="savepost">
+        <PropertyRef Name="IDusers" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NhaTroEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="districts" EntityType="Self.district" />
+    <EntitySet Name="imgs" EntityType="Self.img" />
+    <EntitySet Name="posts" EntityType="Self.post" />
+    <EntitySet Name="projects" EntityType="Self.project" />
+    <EntitySet Name="provinces" EntityType="Self.province" />
+    <EntitySet Name="saveposts" EntityType="Self.savepost" />
+    <EntitySet Name="streets" EntityType="Self.street" />
+    <EntitySet Name="tests" EntityType="Self.test" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <EntitySet Name="wards" EntityType="Self.ward" />
+    <AssociationSet Name="img_fk_img" Association="Self.img_fk_img">
+      <End Role="posts" EntitySet="posts" />
+      <End Role="img" EntitySet="imgs" />
+    </AssociationSet>
+    <AssociationSet Name="posts_fk_IDuser" Association="Self.posts_fk_IDuser">
+      <End Role="users" EntitySet="users" />
+      <End Role="posts" EntitySet="posts" />
+    </AssociationSet>
+    <AssociationSet Name="savepost_fk_users" Association="Self.savepost_fk_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="savepost" EntitySet="saveposts" />
+    </AssociationSet>
+    <FunctionImport Name="get_infor_users" ReturnType="Collection(NhaTroModel.get_infor_users_Result)" />
+  </EntityContainer>
+  <ComplexType Name="get_infor_users_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="45" />
+    <Property Type="String" Name="Pass" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="First_name" Nullable="false" MaxLength="45" />
+    <Property Type="String" Name="Last_name" Nullable="false" MaxLength="45" />
+    <Property Type="Int32" Name="SDT" Nullable="false" />
+    <Property Type="String" Name="QuyenHan" Nullable="true" MaxLength="10" />
+    <Property Type="Decimal" Name="money" Nullable="true" Precision="15" Scale="2" />
+    <Property Type="DateTime" Name="Created_at" Nullable="true" />
+    <Property Type="DateTime" Name="Update_at" Nullable="true" />
+  </ComplexType>
+</Schema>
