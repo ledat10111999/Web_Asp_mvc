@@ -15,12 +15,12 @@
             <div class="row searching-bar blur-bg">
                 <div class="col-md-2 pt-3">
                     <div class="form-group">
-                        <select id="inputState" class="form-control w-100">
-                            <option selected>Loại tin</option>
-                            <option>Phòng trọ, nhà trọ</option>
-                            <option>Nhà thuê nguyên căn</option>
-                            <option>Tìm người ở ghép</option>
-                            <option>Cho thuê căn hộ</option>
+                        <select id="ThongTinMoTa" class="form-control w-100">
+                            <option selected value="">Loại tin</option>
+                            <option value="Phòng trọ">Phòng trọ, nhà trọ</option>
+                            <option value="Nhà thuê nguyên căn">Nhà thuê nguyên căn</option>
+                            <option value="Tìm người ở ghép">Tìm người ở ghép</option>
+                            <option value="Cho thuê căn hộ">Cho thuê căn hộ</option>
                         </select>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="col-md-2 pt-3">
-                    <button type="button" class="btn btn-primary btn-block">Lọc tin</button>
+                    <button type="button" ng-click="myclick()" class="btn btn-primary btn-block">Lọc tin</button>
                 </div>
             </div>
         </div>
@@ -120,33 +120,61 @@
 
 }
 
-<h3>Tin nổi bật</h3>
+<h3 ng-show='hienthi'>Tin nổi bật</h3>
+<h3 class="text-center" ng-show='showresult' ng-if="filtered.length !=0">
+    Tìm thấy <strong style="color: red;"> {{filtered.length}}</strong> kết quả
+</h3>
+<div class="row justify-content-center mt-2" ng-if="filtered.length ==0"
+     style="height: 150px; border:solid 1px gray ;">
+    <h3 class="">No result</h3>
+</div>
 
 <div class="row ">
-    @foreach (var i in Model)
-    {
-        <div class="col-sm-6">
-            <a href="/DetailPost/Post/@i.ID" style="text-decoration: none; color: #000;">
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="/UploadedFiles/@i.image" height="200" class="card-img" alt="">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">@i.TieuDe </h5>
-                                <p class="card-text font-weight-bold">Giá:@i.Gia </p>
-                                <p class="card-text">@i.NoiDung </p>
-                                <p class="card-text">@i.tenQuan - @i.tenTp </p>
-                            </div>
+
+    <div class="col-sm-6" ng-repeat="i in data |filter : search as filtered">
+        <a href="/DetailPost/Post/{{i.ID}}" style="text-decoration: none; color: #000;">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="/UploadedFiles/{{i.image}}" height="200" class="card-img" alt="">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{i.TieuDe}} </h5>
+                            <p class="card-text font-weight-bold">Giá:{{i.Gia}} </p>
+                            <p class="card-text">{{i.NoiDung}} </p>
+                            <p class="card-text">{{i.tenQuan}} - {{i.tenTp}} </p>
                         </div>
                     </div>
                 </div>
-            </a>
-        </div>
-    }
+            </div>
+        </a>
+    </div>
+
 
 </div>
+<script type="text/javascript">
+    var app = angular.module('myApp', []);
+    app.controller('controller', ($scope, $http) => {
+        var base_url = location.protocol + "//" + document.domain + ":" + location.port;
+        $http.get(base_url + "/Home/List").then((result) => {
+            $scope.data = result.data.reverse();
+            console.log(result.data);
+        })
+        $scope.hienthi = true;
+        $scope.showresult = false;
+        $scope.myclick = () => {
+            $scope.search = {
+                tenTp: $('#provinces').val(),
+                tenQuan: $("#districts").val(),
+                tenPhuong: $("#wards").val(),
+                ThongTinMoTa: $("#ThongTinMoTa").val()
+            }
+            $scope.hienthi = false;
+            $scope.showresult = true;
+        }
+    })
+</script>
 @Scripts.Render("~/Scripts/searchbar.js")
 
 

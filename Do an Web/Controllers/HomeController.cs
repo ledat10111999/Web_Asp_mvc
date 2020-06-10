@@ -1,5 +1,6 @@
 ﻿using Do_an_Web.Models;
 using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,22 @@ namespace Do_an_Web.Controllers
         public HomeController()
         {
             db = new NhaTroEntities();
+        }
+        public ActionResult List()
+        {
+           
+            var p = db.posts.ToList();
+            var list = JsonConvert.SerializeObject(p,
+    Formatting.None,
+    new JsonSerializerSettings()
+    {
+        ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+    });
+
+            return Content(list, "application/json");
+
+
+
         }
         public ActionResult Index()
         {

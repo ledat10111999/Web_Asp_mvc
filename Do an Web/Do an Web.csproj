@@ -282,6 +282,7 @@
     <Compile Include="Models\user.cs" />
     <Compile Include="Models\ward.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\PostViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\admin.css" />
@@ -291,6 +292,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\DangTin.css" />
     <Content Include="Content\info.css" />
+    <Content Include="Content\jquery-confirm.min.css" />
     <Content Include="Content\registerPage.css" />
     <Content Include="Content\Style.css" />
     <Content Include="favicon.ico" />
@@ -307,6 +309,8 @@
     <Content Include="img\Quan3.jpg" />
     <Content Include="img\Quan4.jpg" />
     <Content Include="img\unnamed.png" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\angularRouter.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -316,6 +320,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.confirm.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -349,7 +354,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UploadedFiles\" />
-    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

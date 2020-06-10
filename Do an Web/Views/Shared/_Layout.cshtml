@@ -8,9 +8,9 @@
     @Styles.Render("~/Content/bootstrap.min.css")
     @Styles.Render("~/Content/Style.css")
     @Scripts.Render("~/Scripts/jquery-3.4.1.min.js")
-
+<script src="~/Scripts/angular.min.js"></script>
 </head>
-<body>
+<body  ng-app="myApp" ng-controller="controller">
     <!-- Thanh Nav -->
     <div class="Navigator">
         <nav class="navbar navbar-expend-sm navbar-light bg-light">
@@ -31,7 +31,7 @@
    
     <!-- Thanh Nav -->
    @RenderSection("Nav", required: false);
-    <div class="container">
+    <div class="container" >
         @RenderBody()
     </div>
 
