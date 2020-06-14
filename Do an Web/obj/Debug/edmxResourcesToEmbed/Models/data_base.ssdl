@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="NhaTroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
   <EntityType Name="district">
     <Key>
       <PropertyRef Name="id" />
@@ -81,12 +91,15 @@
     <Property Name="_province_id" Type="bigint" />
     <Property Name="_district_id" Type="bigint" />
   </EntityType>
-  <EntityType Name="test">
+  <EntityType Name="sysdiagrams">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="diagram_id" />
     </Key>
-    <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="ten" Type="nchar" MaxLength="10" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="users">
     <Key>
@@ -113,7 +126,7 @@
     <Property Name="_province_id" Type="bigint" />
     <Property Name="_district_id" Type="bigint" />
   </EntityType>
-  <Association Name="img$fk_img">
+  <Association Name="FK_dbo_img_dbo_posts_IDpost_IDimg">
     <End Role="posts" Type="Self.posts" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
@@ -129,7 +142,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="posts$fk_IDuser">
+  <Association Name="FK_dbo_posts_dbo_users_IDusers">
     <End Role="users" Type="Self.users" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -143,7 +156,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="savepost$fk_users">
+  <Association Name="FK_dbo_savepost_dbo_users_IDusers">
     <End Role="users" Type="Self.users" Multiplicity="1" />
     <End Role="savepost" Type="Self.savepost" Multiplicity="*" />
     <ReferentialConstraint>
@@ -155,8 +168,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="get_infor_users" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="NhaTroModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="district" EntityType="Self.district" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="img" EntityType="Self.img" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="posts" EntityType="Self.posts" Schema="dbo" store:Type="Tables" />
@@ -164,18 +177,18 @@
     <EntitySet Name="province" EntityType="Self.province" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="savepost" EntityType="Self.savepost" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="street" EntityType="Self.street" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="test" EntityType="Self.test" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ward" EntityType="Self.ward" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="img$fk_img" Association="Self.img$fk_img">
+    <AssociationSet Name="FK_dbo_img_dbo_posts_IDpost_IDimg" Association="Self.FK_dbo_img_dbo_posts_IDpost_IDimg">
       <End Role="posts" EntitySet="posts" />
       <End Role="img" EntitySet="img" />
     </AssociationSet>
-    <AssociationSet Name="posts$fk_IDuser" Association="Self.posts$fk_IDuser">
+    <AssociationSet Name="FK_dbo_posts_dbo_users_IDusers" Association="Self.FK_dbo_posts_dbo_users_IDusers">
       <End Role="users" EntitySet="users" />
       <End Role="posts" EntitySet="posts" />
     </AssociationSet>
-    <AssociationSet Name="savepost$fk_users" Association="Self.savepost$fk_users">
+    <AssociationSet Name="FK_dbo_savepost_dbo_users_IDusers" Association="Self.FK_dbo_savepost_dbo_users_IDusers">
       <End Role="users" EntitySet="users" />
       <End Role="savepost" EntitySet="savepost" />
     </AssociationSet>

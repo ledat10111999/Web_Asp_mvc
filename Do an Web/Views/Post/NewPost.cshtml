@@ -5,7 +5,7 @@
 
 }
 
-@model Do_an_Web.Models.uppost
+@model Do_an_Web.ViewModel.NewPostViewModel
 <section class="contentDangTin">
 
     <div class="container">
@@ -26,54 +26,39 @@
                         <div class="row">
                             <div class="col-md-3 pt-3">
                                 <div class="form-group">
-                                    @Html.DropDownListFor(m => m.tenTp, ViewBag.province as SelectList, "Chọn tỉnh", new { @class = " form-control w-100" })
+                                    @Html.DropDownListFor(m => m.tenTp, new SelectList(Model.provinces,"c_name","c_name"), "Chọn tỉnh", new { @class = " form-control w-100" })
                                     @Html.ValidationMessageFor(m => m.tenTp, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
                             <div class="col-md-3 pt-3">
                                 <div class="form-group">
-                                    @if (ViewBag.District == null)
-                                    {
-                                        @Html.DropDownListFor(m => m.tenQuan, new SelectList(""), "Chọn quận", new { @class = " form-control w-100" })
+                                   
+                                        @Html.DropDownListFor(m => m.tenQuan, new SelectList(Model.districts,"c_name","c_name"), "Chọn quận", new { @class = " form-control w-100" })
                                         @Html.ValidationMessageFor(m => m.tenQuan, "", new { @class = "text-danger" })
-                                    }
-                                    else
-                                    {
-                                        @Html.DropDownListFor(m => m.tenQuan, ViewBag.District as SelectList, "Chọn quận", new { @class = " form-control w-100" })
-                                        @Html.ValidationMessageFor(m => m.tenQuan, "", new { @class = "text-danger" })
-                                    }
+                                   
+                                    
+                                    
 
 
                                 </div>
                             </div>
                             <div class="col-md-3 pt-3">
                                 <div class="form-group">
-                                    @if (ViewBag.Ward == null)
-                                    {
-                                        @Html.DropDownListFor(m => m.tenPhuong, new SelectList(""), "Chọn phường", new { @class = " form-control w-100" })
+                                 
+                                        @Html.DropDownListFor(m => m.tenPhuong, new SelectList(Model.wards,"c_name","c_name"), "Chọn phường", new { @class = " form-control w-100" })
                                         @Html.ValidationMessageFor(m => m.tenPhuong, "", new { @class = "text-danger" })
-                                    }
-                                    else
-                                    {
-                                        @Html.DropDownListFor(m => m.tenPhuong, ViewBag.Ward as SelectList, "Chọn phường", new { @class = " form-control w-100" })
-                                        @Html.ValidationMessageFor(m => m.tenPhuong, "", new { @class = "text-danger" })
-                                    }
-
+                                
+                                    
                                 </div>
                             </div>
                             <div class="col-md-3 pt-3">
                                 <div class="form-group">
-                                    @if (ViewBag.Street == null)
-                                    {
-                                        @Html.DropDownListFor(m => m.tenDuong, new SelectList(""), "Chọn Đường", new { @class = " form-control w-100" })
+                                 
+                                        @Html.DropDownListFor(m => m.tenDuong, new SelectList(Model.streets,"c_name","c_name"), "Chọn Đường", new { @class = " form-control w-100" })
                                         @Html.ValidationMessageFor(m => m.tenDuong, "", new { @class = "text-danger" })
-                                    }
-                                    else
-                                    {
-                                        @Html.DropDownListFor(m => m.tenDuong, ViewBag.Street as SelectList, "Chọn Đường", new { @class = " form-control w-100" })
-                                        @Html.ValidationMessageFor(m => m.tenDuong, "", new { @class = "text-danger" })
-                                    }
+                                  
+                                     
 
 
                                 </div>

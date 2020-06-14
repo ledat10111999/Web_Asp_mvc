@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="NhaTroModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
   <EntityType Name="district">
     <Key>
       <PropertyRef Name="id" />
@@ -17,7 +27,7 @@
     <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="IDpost" Type="Int32" />
     <Property Name="IDimg" Type="Int32" />
-    <NavigationProperty Name="post" Relationship="Self.img_fk_img" FromRole="img" ToRole="posts" />
+    <NavigationProperty Name="post" Relationship="Self.FK_dbo_img_dbo_posts_IDpost_IDimg" FromRole="img" ToRole="posts" />
   </EntityType>
   <EntityType Name="post">
     <Key>
@@ -44,8 +54,8 @@
     <Property Name="created_at" Type="DateTime" Precision="3" />
     <Property Name="update_at" Type="DateTime" Precision="3" />
     <Property Name="display" Type="Boolean" />
-    <NavigationProperty Name="imgs" Relationship="Self.img_fk_img" FromRole="posts" ToRole="img" />
-    <NavigationProperty Name="user" Relationship="Self.posts_fk_IDuser" FromRole="posts" ToRole="users" />
+    <NavigationProperty Name="imgs" Relationship="Self.FK_dbo_img_dbo_posts_IDpost_IDimg" FromRole="posts" ToRole="img" />
+    <NavigationProperty Name="user" Relationship="Self.FK_dbo_posts_dbo_users_IDusers" FromRole="posts" ToRole="users" />
   </EntityType>
   <EntityType Name="project">
     <Key>
@@ -73,7 +83,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IDusers" Type="Int32" Nullable="false" />
     <Property Name="IDpost" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="user" Relationship="Self.savepost_fk_users" FromRole="savepost" ToRole="users" />
+    <NavigationProperty Name="user" Relationship="Self.FK_dbo_savepost_dbo_users_IDusers" FromRole="savepost" ToRole="users" />
   </EntityType>
   <EntityType Name="street">
     <Key>
@@ -85,12 +95,15 @@
     <Property Name="C_province_id" Type="Int64" />
     <Property Name="C_district_id" Type="Int64" />
   </EntityType>
-  <EntityType Name="test">
+  <EntityType Name="sysdiagram">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="diagram_id" />
     </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="ten" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="user">
     <Key>
@@ -106,8 +119,8 @@
     <Property Name="money" Type="Decimal" Precision="15" Scale="2" />
     <Property Name="Created_at" Type="DateTime" Precision="0" />
     <Property Name="Update_at" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="posts" Relationship="Self.posts_fk_IDuser" FromRole="users" ToRole="posts" />
-    <NavigationProperty Name="saveposts" Relationship="Self.savepost_fk_users" FromRole="users" ToRole="savepost" />
+    <NavigationProperty Name="posts" Relationship="Self.FK_dbo_posts_dbo_users_IDusers" FromRole="users" ToRole="posts" />
+    <NavigationProperty Name="saveposts" Relationship="Self.FK_dbo_savepost_dbo_users_IDusers" FromRole="users" ToRole="savepost" />
   </EntityType>
   <EntityType Name="ward">
     <Key>
@@ -119,7 +132,7 @@
     <Property Name="C_province_id" Type="Int64" />
     <Property Name="C_district_id" Type="Int64" />
   </EntityType>
-  <Association Name="img_fk_img">
+  <Association Name="FK_dbo_img_dbo_posts_IDpost_IDimg">
     <End Role="posts" Type="Self.post" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
@@ -135,7 +148,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="posts_fk_IDuser">
+  <Association Name="FK_dbo_posts_dbo_users_IDusers">
     <End Role="users" Type="Self.user" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -149,7 +162,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="savepost_fk_users">
+  <Association Name="FK_dbo_savepost_dbo_users_IDusers">
     <End Role="users" Type="Self.user" Multiplicity="1" />
     <End Role="savepost" Type="Self.savepost" Multiplicity="*" />
     <ReferentialConstraint>
@@ -162,6 +175,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="NhaTroEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
     <EntitySet Name="districts" EntityType="Self.district" />
     <EntitySet Name="imgs" EntityType="Self.img" />
     <EntitySet Name="posts" EntityType="Self.post" />
@@ -169,33 +183,20 @@
     <EntitySet Name="provinces" EntityType="Self.province" />
     <EntitySet Name="saveposts" EntityType="Self.savepost" />
     <EntitySet Name="streets" EntityType="Self.street" />
-    <EntitySet Name="tests" EntityType="Self.test" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="users" EntityType="Self.user" />
     <EntitySet Name="wards" EntityType="Self.ward" />
-    <AssociationSet Name="img_fk_img" Association="Self.img_fk_img">
+    <AssociationSet Name="FK_dbo_img_dbo_posts_IDpost_IDimg" Association="Self.FK_dbo_img_dbo_posts_IDpost_IDimg">
       <End Role="posts" EntitySet="posts" />
       <End Role="img" EntitySet="imgs" />
     </AssociationSet>
-    <AssociationSet Name="posts_fk_IDuser" Association="Self.posts_fk_IDuser">
+    <AssociationSet Name="FK_dbo_posts_dbo_users_IDusers" Association="Self.FK_dbo_posts_dbo_users_IDusers">
       <End Role="users" EntitySet="users" />
       <End Role="posts" EntitySet="posts" />
     </AssociationSet>
-    <AssociationSet Name="savepost_fk_users" Association="Self.savepost_fk_users">
+    <AssociationSet Name="FK_dbo_savepost_dbo_users_IDusers" Association="Self.FK_dbo_savepost_dbo_users_IDusers">
       <End Role="users" EntitySet="users" />
       <End Role="savepost" EntitySet="saveposts" />
     </AssociationSet>
-    <FunctionImport Name="get_infor_users" ReturnType="Collection(NhaTroModel.get_infor_users_Result)" />
   </EntityContainer>
-  <ComplexType Name="get_infor_users_Result">
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="45" />
-    <Property Type="String" Name="Pass" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="First_name" Nullable="false" MaxLength="45" />
-    <Property Type="String" Name="Last_name" Nullable="false" MaxLength="45" />
-    <Property Type="Int32" Name="SDT" Nullable="false" />
-    <Property Type="String" Name="QuyenHan" Nullable="true" MaxLength="10" />
-    <Property Type="Decimal" Name="money" Nullable="true" Precision="15" Scale="2" />
-    <Property Type="DateTime" Name="Created_at" Nullable="true" />
-    <Property Type="DateTime" Name="Update_at" Nullable="true" />
-  </ComplexType>
 </Schema>

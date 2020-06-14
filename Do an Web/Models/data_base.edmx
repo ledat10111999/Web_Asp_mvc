@@ -1,0 +1,569 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NhaTroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="district">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="_prefix" Type="nvarchar" MaxLength="20" />
+          <Property Name="_province_id" Type="bigint" />
+        </EntityType>
+        <EntityType Name="img">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="image" Type="nvarchar" MaxLength="100" />
+          <Property Name="IDpost" Type="int" />
+          <Property Name="IDimg" Type="int" />
+        </EntityType>
+        <EntityType Name="posts">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDimg" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDimg" Type="int" Nullable="false" />
+          <Property Name="tenTp" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="tenQuan" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="tenDuong" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="tenPhuong" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="soNha" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="DiaChiChinhXac" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="ThongTinMoTa" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="DienTich" Type="int" />
+          <Property Name="TieuDe" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="NoiDung" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DoiTuongChoThue" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Gia" Type="int" />
+          <Property Name="IDusers" Type="int" Nullable="false" />
+          <Property Name="image" Type="nvarchar" MaxLength="100" />
+          <Property Name="SDT" Type="int" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="update_at" Type="datetime" />
+          <Property Name="display" Type="bit" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="_province_id" Type="bigint" />
+          <Property Name="_district_id" Type="bigint" />
+          <Property Name="_lat" Type="float" />
+          <Property Name="_lng" Type="float" />
+        </EntityType>
+        <EntityType Name="province">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="_code" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="savepost">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDusers" Type="int" Nullable="false" />
+          <Property Name="IDpost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="street">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="_prefix" Type="nvarchar" MaxLength="20" />
+          <Property Name="_province_id" Type="bigint" />
+          <Property Name="_district_id" Type="bigint" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Pass" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="First_name" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Last_name" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="SDT" Type="int" Nullable="false" />
+          <Property Name="QuyenHan" Type="nvarchar" MaxLength="10" />
+          <Property Name="money" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="Created_at" Type="datetime2" Precision="0" />
+          <Property Name="Update_at" Type="datetime2" Precision="0" />
+        </EntityType>
+        <EntityType Name="ward">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="_prefix" Type="nvarchar" MaxLength="20" />
+          <Property Name="_province_id" Type="bigint" />
+          <Property Name="_district_id" Type="bigint" />
+        </EntityType>
+        <Association Name="FK_dbo_img_dbo_posts_IDpost_IDimg">
+          <End Role="posts" Type="Self.posts" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="img" Type="Self.img" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="posts">
+              <PropertyRef Name="ID" />
+              <PropertyRef Name="IDimg" />
+            </Principal>
+            <Dependent Role="img">
+              <PropertyRef Name="IDpost" />
+              <PropertyRef Name="IDimg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_posts_dbo_users_IDusers">
+          <End Role="users" Type="Self.users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="posts" Type="Self.posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="posts">
+              <PropertyRef Name="IDusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_savepost_dbo_users_IDusers">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="savepost" Type="Self.savepost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="savepost">
+              <PropertyRef Name="IDusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NhaTroModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="district" EntityType="Self.district" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="img" EntityType="Self.img" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="posts" EntityType="Self.posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="project" EntityType="Self.project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="province" EntityType="Self.province" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="savepost" EntityType="Self.savepost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="street" EntityType="Self.street" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ward" EntityType="Self.ward" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_img_dbo_posts_IDpost_IDimg" Association="Self.FK_dbo_img_dbo_posts_IDpost_IDimg">
+            <End Role="posts" EntitySet="posts" />
+            <End Role="img" EntitySet="img" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_posts_dbo_users_IDusers" Association="Self.FK_dbo_posts_dbo_users_IDusers">
+            <End Role="users" EntitySet="users" />
+            <End Role="posts" EntitySet="posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_savepost_dbo_users_IDusers" Association="Self.FK_dbo_savepost_dbo_users_IDusers">
+            <End Role="users" EntitySet="users" />
+            <End Role="savepost" EntitySet="savepost" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NhaTroModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="district">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="C_prefix" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="C_province_id" Type="Int64" />
+        </EntityType>
+        <EntityType Name="img">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IDpost" Type="Int32" />
+          <Property Name="IDimg" Type="Int32" />
+          <NavigationProperty Name="post" Relationship="Self.FK_dbo_img_dbo_posts_IDpost_IDimg" FromRole="img" ToRole="posts" />
+        </EntityType>
+        <EntityType Name="post">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDimg" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDimg" Type="Int32" Nullable="false" />
+          <Property Name="tenTp" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tenQuan" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tenDuong" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tenPhuong" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="soNha" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DiaChiChinhXac" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ThongTinMoTa" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DienTich" Type="Int32" />
+          <Property Name="TieuDe" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NoiDung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DoiTuongChoThue" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gia" Type="Int32" />
+          <Property Name="IDusers" Type="Int32" Nullable="false" />
+          <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="update_at" Type="DateTime" Precision="3" />
+          <Property Name="display" Type="Boolean" />
+          <NavigationProperty Name="imgs" Relationship="Self.FK_dbo_img_dbo_posts_IDpost_IDimg" FromRole="posts" ToRole="img" />
+          <NavigationProperty Name="user" Relationship="Self.FK_dbo_posts_dbo_users_IDusers" FromRole="posts" ToRole="users" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="C_province_id" Type="Int64" />
+          <Property Name="C_district_id" Type="Int64" />
+          <Property Name="C_lat" Type="Double" />
+          <Property Name="C_lng" Type="Double" />
+        </EntityType>
+        <EntityType Name="province">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="C_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="savepost">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDusers" Type="Int32" Nullable="false" />
+          <Property Name="IDpost" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.FK_dbo_savepost_dbo_users_IDusers" FromRole="savepost" ToRole="users" />
+        </EntityType>
+        <EntityType Name="street">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="C_prefix" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="C_province_id" Type="Int64" />
+          <Property Name="C_district_id" Type="Int64" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="First_name" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Last_name" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SDT" Type="Int32" Nullable="false" />
+          <Property Name="QuyenHan" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="money" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="Created_at" Type="DateTime" Precision="0" />
+          <Property Name="Update_at" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="posts" Relationship="Self.FK_dbo_posts_dbo_users_IDusers" FromRole="users" ToRole="posts" />
+          <NavigationProperty Name="saveposts" Relationship="Self.FK_dbo_savepost_dbo_users_IDusers" FromRole="users" ToRole="savepost" />
+        </EntityType>
+        <EntityType Name="ward">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="C_prefix" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="C_province_id" Type="Int64" />
+          <Property Name="C_district_id" Type="Int64" />
+        </EntityType>
+        <Association Name="FK_dbo_img_dbo_posts_IDpost_IDimg">
+          <End Role="posts" Type="Self.post" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="img" Type="Self.img" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="posts">
+              <PropertyRef Name="ID" />
+              <PropertyRef Name="IDimg" />
+            </Principal>
+            <Dependent Role="img">
+              <PropertyRef Name="IDpost" />
+              <PropertyRef Name="IDimg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_posts_dbo_users_IDusers">
+          <End Role="users" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="posts" Type="Self.post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="posts">
+              <PropertyRef Name="IDusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_savepost_dbo_users_IDusers">
+          <End Role="users" Type="Self.user" Multiplicity="1" />
+          <End Role="savepost" Type="Self.savepost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="savepost">
+              <PropertyRef Name="IDusers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NhaTroEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="districts" EntityType="Self.district" />
+          <EntitySet Name="imgs" EntityType="Self.img" />
+          <EntitySet Name="posts" EntityType="Self.post" />
+          <EntitySet Name="projects" EntityType="Self.project" />
+          <EntitySet Name="provinces" EntityType="Self.province" />
+          <EntitySet Name="saveposts" EntityType="Self.savepost" />
+          <EntitySet Name="streets" EntityType="Self.street" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="wards" EntityType="Self.ward" />
+          <AssociationSet Name="FK_dbo_img_dbo_posts_IDpost_IDimg" Association="Self.FK_dbo_img_dbo_posts_IDpost_IDimg">
+            <End Role="posts" EntitySet="posts" />
+            <End Role="img" EntitySet="imgs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_posts_dbo_users_IDusers" Association="Self.FK_dbo_posts_dbo_users_IDusers">
+            <End Role="users" EntitySet="users" />
+            <End Role="posts" EntitySet="posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_savepost_dbo_users_IDusers" Association="Self.FK_dbo_savepost_dbo_users_IDusers">
+            <End Role="users" EntitySet="users" />
+            <End Role="savepost" EntitySet="saveposts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NhaTroModelStoreContainer" CdmEntityContainer="NhaTroEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="NhaTroModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="districts">
+            <EntityTypeMapping TypeName="NhaTroModel.district">
+              <MappingFragment StoreEntitySet="district">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="C_name" ColumnName="_name" />
+                <ScalarProperty Name="C_prefix" ColumnName="_prefix" />
+                <ScalarProperty Name="C_province_id" ColumnName="_province_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="imgs">
+            <EntityTypeMapping TypeName="NhaTroModel.img">
+              <MappingFragment StoreEntitySet="img">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="IDpost" ColumnName="IDpost" />
+                <ScalarProperty Name="IDimg" ColumnName="IDimg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="posts">
+            <EntityTypeMapping TypeName="NhaTroModel.post">
+              <MappingFragment StoreEntitySet="posts">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDimg" ColumnName="IDimg" />
+                <ScalarProperty Name="tenTp" ColumnName="tenTp" />
+                <ScalarProperty Name="tenQuan" ColumnName="tenQuan" />
+                <ScalarProperty Name="tenDuong" ColumnName="tenDuong" />
+                <ScalarProperty Name="tenPhuong" ColumnName="tenPhuong" />
+                <ScalarProperty Name="soNha" ColumnName="soNha" />
+                <ScalarProperty Name="DiaChiChinhXac" ColumnName="DiaChiChinhXac" />
+                <ScalarProperty Name="ThongTinMoTa" ColumnName="ThongTinMoTa" />
+                <ScalarProperty Name="DienTich" ColumnName="DienTich" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="DoiTuongChoThue" ColumnName="DoiTuongChoThue" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="IDusers" ColumnName="IDusers" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="update_at" ColumnName="update_at" />
+                <ScalarProperty Name="display" ColumnName="display" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="projects">
+            <EntityTypeMapping TypeName="NhaTroModel.project">
+              <MappingFragment StoreEntitySet="project">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="C_name" ColumnName="_name" />
+                <ScalarProperty Name="C_province_id" ColumnName="_province_id" />
+                <ScalarProperty Name="C_district_id" ColumnName="_district_id" />
+                <ScalarProperty Name="C_lat" ColumnName="_lat" />
+                <ScalarProperty Name="C_lng" ColumnName="_lng" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="provinces">
+            <EntityTypeMapping TypeName="NhaTroModel.province">
+              <MappingFragment StoreEntitySet="province">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="C_name" ColumnName="_name" />
+                <ScalarProperty Name="C_code" ColumnName="_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="saveposts">
+            <EntityTypeMapping TypeName="NhaTroModel.savepost">
+              <MappingFragment StoreEntitySet="savepost">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDusers" ColumnName="IDusers" />
+                <ScalarProperty Name="IDpost" ColumnName="IDpost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="streets">
+            <EntityTypeMapping TypeName="NhaTroModel.street">
+              <MappingFragment StoreEntitySet="street">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="C_name" ColumnName="_name" />
+                <ScalarProperty Name="C_prefix" ColumnName="_prefix" />
+                <ScalarProperty Name="C_province_id" ColumnName="_province_id" />
+                <ScalarProperty Name="C_district_id" ColumnName="_district_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NhaTroModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="NhaTroModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="QuyenHan" ColumnName="QuyenHan" />
+                <ScalarProperty Name="money" ColumnName="money" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="Update_at" ColumnName="Update_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wards">
+            <EntityTypeMapping TypeName="NhaTroModel.ward">
+              <MappingFragment StoreEntitySet="ward">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="C_name" ColumnName="_name" />
+                <ScalarProperty Name="C_prefix" ColumnName="_prefix" />
+                <ScalarProperty Name="C_province_id" ColumnName="_province_id" />
+                <ScalarProperty Name="C_district_id" ColumnName="_district_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

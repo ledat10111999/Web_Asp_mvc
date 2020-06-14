@@ -4,17 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model Do_an_Web.Models.post
+@model Do_an_Web.ViewModel.UpdatePostViewModel
 <section class="contentDangTin">
 
     <div class="container">
 
         @using (Html.BeginForm("UpdatePost", "Post", FormMethod.Post, new { id = "PostForm", @enctype = "multipart/form-data" }))
         {
-            <h1 class="text-center font-weight-bold">Đăng tin mới</h1>
+            <h1 class="text-center font-weight-bold">Sửa tin</h1>
             @Html.AntiForgeryToken();
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+            @Html.HiddenFor(p=>p.ID, new { Value = Model.ID })
             <hr>
             <div class="row">
                 <div class="col-md-8">
@@ -25,51 +25,36 @@
                         <div class="row">
                             <div class="col-md-3 pt-3">
                                 <div class="form-group">
-                                    @Html.DropDownListFor(m => m.tenTp, ViewBag.province as SelectList, "Chọn tỉnh", new { @class = " form-control w-100" })
+                                    @Html.DropDownListFor(m => m.tenTp, new SelectList(Model.provinces,"c_name","c_name",Model.tenTp), "Chọn tỉnh", new { @class = " form-control w-100" })
                                     @Html.ValidationMessageFor(m => m.tenTp, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
                             <div class="col-md-3 pt-3">
                                 <div class="form-group">
-                                    @if (ViewBag.District == null)
-                                    {
-                                        @Html.DropDownListFor(m => m.tenQuan, new SelectList(""), "Chọn quận", new { @class = " form-control w-100" })
+                                   
+                                        @Html.DropDownListFor(m => m.tenQuan, new SelectList(Model.districts,"c_name","c_name",Model.tenQuan), "Chọn quận", new { @class = " form-control w-100" })
                                         @Html.ValidationMessageFor(m => m.tenQuan, "", new { @class = "text-danger" })
-                                    }
-                                    else
-                                    {
-                                        @Html.DropDownListFor(m => m.tenQuan, ViewBag.District as SelectList, "Chọn quận", new { @class = " form-control w-100" })
-                                        @Html.ValidationMessageFor(m => m.tenQuan, "", new { @class = "text-danger" })
-                                    }
+                                   
                                 </div>
                             </div>
                             <div class="col-md-3 pt-3">
                                 <div class="form-group">
-                                    @if (ViewBag.Ward == null)
-                                    {
-                                        @Html.DropDownListFor(m => m.tenPhuong, new SelectList(""), "Chọn phường", new { @class = " form-control w-100" })
+                                   
+                                   
+                                        @Html.DropDownListFor(m => m.tenPhuong, new SelectList(Model.wards,"c_name","c_name",Model.tenPhuong), "Chọn phường", new { @class = " form-control w-100" })
                                         @Html.ValidationMessageFor(m => m.tenPhuong, "", new { @class = "text-danger" })
-                                    }
-                                    else
-                                    {
-                                        @Html.DropDownListFor(m => m.tenPhuong, ViewBag.Ward as SelectList, "Chọn phường", new { @class = " form-control w-100" })
-                                        @Html.ValidationMessageFor(m => m.tenPhuong, "", new { @class = "text-danger" })
-                                    }
+                                   
                                 </div>
                             </div>
                             <div class="col-md-3 pt-3">
                                 <div class="form-group">
-                                    @if (ViewBag.Street == null)
-                                    {
-                                        @Html.DropDownListFor(m => m.tenDuong, new SelectList(""), "Chọn Đường", new { @class = " form-control w-100" })
+                                 
+                                        @Html.DropDownListFor(m =>m.tenDuong, new SelectList(Model.streets,"c_name","c_name",Model.tenDuong), "Chọn Đường", new { @class = " form-control w-100" })
                                         @Html.ValidationMessageFor(m => m.tenDuong, "", new { @class = "text-danger" })
-                                    }
-                                    else
-                                    {
-                                        @Html.DropDownListFor(m => m.tenDuong, ViewBag.Street as SelectList, "Chọn Đường", new { @class = " form-control w-100" })
-                                        @Html.ValidationMessageFor(m => m.tenDuong, "", new { @class = "text-danger" })
-                                    }
+                                  
+                                  
+                                     
                                 </div>
                             </div>
                         </div>
@@ -173,7 +158,7 @@
                     <div class="row" id="addImg">
 
                     </div>
-                    <img src="~/UploadedFiles/@Model.image " class="mt-5" />
+                   
                     <button type="submit" class="btn btn-primary btn-block font-weight-bold" style="margin-top: 50px;">
                         Hoàn thành
                     </button>
@@ -203,7 +188,7 @@
         }
     </div>
 </section>
-<script src="~/Scripts/newpost.js"></script>
+
 <!-- preview img -->
 <script>
     $(document).ready(function () {
@@ -232,5 +217,9 @@
     });
 
 </script>
+@section scripts{
+    <script src="~/Scripts/newpost.js"></script>
+}
+  
 
 

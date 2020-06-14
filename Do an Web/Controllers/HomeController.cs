@@ -40,7 +40,7 @@ namespace Do_an_Web.Controllers
         }
         public List<province> GetProvinces()
         {
-            
+
             List<province> province = db.provinces.ToList();
             
             return province;
