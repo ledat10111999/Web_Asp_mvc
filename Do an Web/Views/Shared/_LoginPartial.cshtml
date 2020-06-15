@@ -10,15 +10,18 @@
                     aria-expanded="false">
                 @Session["username"].ToString()
                 </button>
-                <div class="dropdown-menu">
-                    <a href="#" class="dropdown-item">Thông tin tài khoản</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="" class="dropdown-item">Bài viết đã đăng</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="" class="dropdown-item">Bài viết đã lưu</a>
-                    <div class="dropdown-divider"></div>
-                    <button class="signout dropdown-item" id="signout">Đăng xuất</button>
-                </div>
+            <div class="dropdown-menu">
+                @Html.ActionLink("Thông tin tài khoản", "AccountInfor", "User", null, htmlAttributes: new { @class = "dropdown-item" })
+
+                <div class="dropdown-divider"></div>
+                @Html.ActionLink("Bài viết đã đăng", "Posted", "User", null, htmlAttributes: new { @class = "dropdown-item" })
+
+                <div class="dropdown-divider"></div>
+                @Html.ActionLink("Bài viết đã Lưu", "Saved", "User", null, htmlAttributes: new { @class = "dropdown-item" })
+                
+                <div class="dropdown-divider"></div>
+                <button class="signout dropdown-item" id="signout">Đăng xuất</button>
+            </div>
             </div>
         </li>
         if (Session["QuyenHan"].ToString() == "admin")

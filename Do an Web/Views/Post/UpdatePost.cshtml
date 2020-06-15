@@ -25,36 +25,36 @@
                         <div class="row">
                             <div class="col-md-3 pt-3">
                                 <div class="form-group">
-                                    @Html.DropDownListFor(m => m.tenTp, new SelectList(Model.provinces,"c_name","c_name",Model.tenTp), "Chọn tỉnh", new { @class = " form-control w-100" })
+                                    @Html.DropDownListFor(m => m.tenTp, new SelectList(Model.provinces, "c_name", "c_name", Model.tenTp), "Chọn tỉnh", new { @class = " form-control w-100" })
                                     @Html.ValidationMessageFor(m => m.tenTp, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
                             <div class="col-md-3 pt-3">
                                 <div class="form-group">
-                                   
-                                        @Html.DropDownListFor(m => m.tenQuan, new SelectList(Model.districts,"c_name","c_name",Model.tenQuan), "Chọn quận", new { @class = " form-control w-100" })
-                                        @Html.ValidationMessageFor(m => m.tenQuan, "", new { @class = "text-danger" })
-                                   
+
+                                    @Html.DropDownListFor(m => m.tenQuan, new SelectList(Model.districts, "c_name", "c_name", Model.tenQuan), "Chọn quận", new { @class = " form-control w-100" })
+                                    @Html.ValidationMessageFor(m => m.tenQuan, "", new { @class = "text-danger" })
+
                                 </div>
                             </div>
                             <div class="col-md-3 pt-3">
                                 <div class="form-group">
-                                   
-                                   
-                                        @Html.DropDownListFor(m => m.tenPhuong, new SelectList(Model.wards,"c_name","c_name",Model.tenPhuong), "Chọn phường", new { @class = " form-control w-100" })
-                                        @Html.ValidationMessageFor(m => m.tenPhuong, "", new { @class = "text-danger" })
-                                   
+
+
+                                    @Html.DropDownListFor(m => m.tenPhuong, new SelectList(Model.wards, "c_name", "c_name", Model.tenPhuong), "Chọn phường", new { @class = " form-control w-100" })
+                                    @Html.ValidationMessageFor(m => m.tenPhuong, "", new { @class = "text-danger" })
+
                                 </div>
                             </div>
                             <div class="col-md-3 pt-3">
                                 <div class="form-group">
-                                 
-                                        @Html.DropDownListFor(m =>m.tenDuong, new SelectList(Model.streets,"c_name","c_name",Model.tenDuong), "Chọn Đường", new { @class = " form-control w-100" })
-                                        @Html.ValidationMessageFor(m => m.tenDuong, "", new { @class = "text-danger" })
-                                  
-                                  
-                                     
+
+                                    @Html.DropDownListFor(m => m.tenDuong, new SelectList(Model.streets, "c_name", "c_name", Model.tenDuong), "Chọn Đường", new { @class = " form-control w-100" })
+                                    @Html.ValidationMessageFor(m => m.tenDuong, "", new { @class = "text-danger" })
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -150,7 +150,7 @@
                             </div>
                             <div class="custom-file">
                                 @Html.TextBoxFor(p => p.image, new { @multiple = true, @type = "file", @class = "custom-file-input", id = "inputGroupFile", @name = "uploadImg" })
-                                @Html.ValidationMessageFor(m => m.image, "", new { @class = "text-danger" })
+
                                 <label for="inputGroupFile" class="custom-file-label">Choose file</label>
                             </div>
                         </div>
@@ -158,7 +158,7 @@
                     <div class="row" id="addImg">
 
                     </div>
-                   
+                    @Html.ValidationMessageFor(m => m.image, "", new { @class = "text-danger" })
                     <button type="submit" class="btn btn-primary btn-block font-weight-bold" style="margin-top: 50px;">
                         Hoàn thành
                     </button>
@@ -191,6 +191,27 @@
 
 <!-- preview img -->
 <script>
+    $.validator.unobtrusive.adapters.add('filetype', ['validtypes'], function (options) {
+        options.rules['filetype'] = { validtypes: options.params.validtypes.split(',') };
+        options.messages['filetype'] = options.message;
+    });
+
+    $.validator.addMethod("filetype", function (value, element, param) {
+        for (var i = 0; i < element.files.length; i++) {
+            var extension = getFileExtension(element.files[i].name);
+            if ($.inArray(extension, param.validtypes) === -1) {
+                return false;
+            }
+        }
+        return true;
+    });
+
+    function getFileExtension(fileName) {
+        if (/[.]/.exec(fileName)) {
+            return /[^.]+$/.exec(fileName)[0].toLowerCase();
+        }
+        return null;
+    }
     $(document).ready(function () {
         $('#inputGroupFile').on('change', function () {
             var files = $(this)[0].files;

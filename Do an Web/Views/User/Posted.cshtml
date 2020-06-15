@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Posted";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<Do_an_Web.Models.post>
+<h3 class="text-center">Bài viết đã đăng : @Model.Count</h3>
+<div class="row">
+    @if (Model.Count == 0)
+    {
+        <h3 class="text-center">Bạn chưa Lưu viết nào</h3>
+    }
+    else
+    {
+        foreach (var i in Model)
+        {
+            <div class="col-sm-6">
+                <a href="/DetailPost/Post/@i.ID" style="text-decoration: none; color: #000;">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img src="~/UploadedFiles/@i.image" height="200px" class="card-img" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">@i.TieuDe</h5>
+                                    <p class="card-text font-weight-bold">Giá: @i.Gia </p>
+                                    <p class="card-text">
+                                        @i.tenQuan - @i.tenTp
+                                    </p>
+                                    <p class="card-text">@i.NoiDung </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+
+    }
+
+
+
+</div>
+

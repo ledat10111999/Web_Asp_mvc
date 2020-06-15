@@ -45,6 +45,7 @@ namespace Do_an_Web.Controllers
                         Session["username"] = person.Last_name + " " + person.First_name;
                         Session["ID"] = person.ID;
                         Session["quyenhan"] = person.QuyenHan;
+                        Session["Phone"] = person.SDT;
 
                         return RedirectToAction("Index", "Home");
                     }
@@ -112,6 +113,8 @@ namespace Do_an_Web.Controllers
                             var id = db.users.FirstOrDefault(x => x.Email == signup.Email.Trim());
                             Session["username"] = signup.Last_name + " " + signup.First_name;
                             Session["ID"] = id.ID;
+                            Session["QuyenHan"] = id.QuyenHan;
+                            Session["Phone"] = id.SDT;
                             return RedirectToAction("Index", "Home");
                         }
                         catch (Exception e)

@@ -1,0 +1,261 @@
+﻿
+@{
+    ViewBag.Title = "AccoutInfor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Do_an_Web.Models.user
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-lg-2 d-none d-lg-block bg-light sidebar">
+            <div class="user-info">
+                <a href="#" class="clearfix">
+                    <div class="user-avatar">
+                        <img width="50px" src="~/img/boy_1544603222.png" alt="avatar">
+                    </div>
+                    <div class="user-meta">
+                        <div class="inner">
+                            <div class="user-name">
+                               @Model.First_name @Model.Last_name
+                            </div>
+                            <div class="user-verify" style="color: #555; font-size: 0.9rem;">
+                                @Model.SDT
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <ul>
+                    <li>
+                        <span>Mã thành viên: </span>
+                        <span style="font-weight: 700;">@Model.ID</span>
+                    </li>
+                    <li>
+                        <span>Số dư: </span>
+                        <span style="font-weight: 700;">@Model.money</span>
+                    </li>
+                </ul>
+
+                <a href="#" class="btn btn-warning btn-sm mr-1">Nạp tiền</a>
+                <a href="/DangTin" class="btn btn-danger btn-sm mr-1">Đăng tin</a>
+            </div>
+            <ul class="nav nav-sidebar">
+                <li class="nav-item">
+                    <a href="/posted/<%=data.sign.ID %> " class="nav-link">Quản lý tin đăng</a>
+                </li>
+                <li class="nav-item"><a href="#" class="nav-link">Sửa thông tin cá nhân</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Nạp tiền vào tài khoản</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Lịch sử nạp tiền</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Lich sử thanh toán</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Bảng giá dịch vụ</a></li>
+            </ul>
+        </nav>
+
+        <!-- Thông tin tài khoản -->
+        <main role="main" class="ml-sm-auto col-md-10" style="margin-top: 20px" 
+              >
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h1 class="h2">Thông tin tài khoản</h1>
+            </div>
+            <form action="#" class="js-form-submit-data" data-action-url="#" method="POST" novalidate="novalidate">
+
+                <div class="form-group row mt-5">
+                    <label for="user-id" class="col-md-2 offset-md-2 col-form-label">Mã thành viên</label>
+                    <div class="col-md-6">
+                        <input type="text" id="user-id" value="@Model.ID" readonly
+                               class="form-control disable">
+                    </div>
+                </div>
+                <!-- Created_at -->
+                <div class="form-group row mt-5">
+                    <label for="user-id" class="col-md-2 offset-md-2 col-form-label">Ngày tạo:</label>
+                    <div class="col-md-6">
+                        <input type="text" id="Created_at" value="@Model.Created_at" readonly
+                               class="form-control disable">
+                    </div>
+                </div>
+                <!-- Infor Email -->
+                <div class="form-group row mt-5">
+                    <label for="user-id" class="col-md-2 offset-md-2 col-form-label">Email:</label>
+                    <div class="col-md-6">
+                        <input type="text" id="Email" value="@Model.Email " readonly
+                               class="form-control disable">
+                    </div>
+                </div>
+                <!-- FirstName -->
+
+                <div class="form-group row mt-5" id="box_FirstName" ng-show="showFirst_name">
+                    <label for="user-id" class="col-md-2 offset-md-2 col-form-label">Họ</label>
+                    <div class="input-group col-md-6">
+                        <input type="text" id="user-first-name" value="@Model.First_name" readonly
+                               class="form-control disable">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" ng-click='btn_FirstName()'>
+                                Chỉnh
+                                sửa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row justify-content-center " id="text-danger-firstname"  ng-show ="err_FirstName">
+                  <div class="text-danger">Chưa nhập họ</div>
+                </div> -->
+                <div class="form-group row mt-5  " ng-show="!showFirst_name">
+
+                    <label for="user-id" class="col-md-2 offset-md-2 col-form-label">Họ</label>
+                    <div class="input-group col-md-6">
+                        <input type="text" id="First_name" value="@Model.First_name"
+                               class="form-control disable">
+                        <div class="input-group-append">
+                            <button id="btn_FirstName" class=" btn btn-outline-success ml-1" type="button"
+                                    ng-click="btn_FirstName()">
+                                Lưu
+                            </button>
+                            <button class=" btn btn-outline-danger ml-1" type="button"
+                                    ng-click="btn_FirstName()">
+                                Hủy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LastName -->
+                <div class="form-group row mt-5" ng-show="!showLast_name">
+                    <label for="user-id" class="col-md-2 offset-md-2 col-form-label">Tên và tên đệm</label>
+                    <div class="input-group col-md-6">
+                        <input type="text" id="user-last-name" value="@Model.Last_name" readonly
+                               class="form-control disable">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" ng-click="btn_LastName()">
+                                Chỉnh
+                                sửa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row mt-5" ng-show="showLast_name">
+                    <label for="user-id" class="col-md-2 offset-md-2 col-form-label">Tên và tên đệm</label>
+                    <div class="input-group col-md-6">
+                        <input type="text" placeholder="A-z" id="Last_name" value="@Model.Last_name "
+                               class="form-control disable">
+                        <div class="input-group-append">
+                            <button id="btn_LastName" class=" btn btn-outline-success ml-1" type="button"
+                                    ng-click="btn_LasttName()">
+                                Lưu
+                            </button>
+                            <button class=" btn btn-outline-danger ml-1" type="button"
+                                    ng-click="btn_LastName()">
+                                Hủy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PhoneNumber -->
+                <div class="form-group row mt-5" ng-show="!showPhone_number">
+                    <label for="user-id" class="col-md-2 offset-md-2 col-form-label">Số điện thoại</label>
+                    <div class="input-group col-md-6">
+                        <input type="text" id="user-phone-number" value="0 @Model.SDT " readonly
+                               class="form-control disable">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button"
+                                    ng-click="btn_PhoneNumber()">
+                                Chỉnh sửa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row mt-5" ng-show="showPhone_number">
+                    <label for="user-id" class="col-md-2 offset-md-2 col-form-label">Số điện thoại</label>
+                    <div class="input-group col-md-6">
+                        <input type="text" id="PhoneNumber" placeholder="012345678" pattern="[0-9]{10}" title="Nhập số" value="@Model.SDT"
+                               class="form-control disable">
+                        <div class="input-group-append">
+                            <button id="btn_PhoneNumber" class=" btn btn-outline-success ml-1" type="button"
+                                    ng-click="btn_PhoneNumber()">
+                                Lưu
+                            </button>
+                            <button class=" btn btn-outline-danger ml-1" type="button"
+                                    ng-click="btn_PhoneNumber()">
+                                Hủy
+                            </button>
+                            <!-- <button id="btn_PhoneNumber" class="btn btn-outline-success" type="button" ng-click="btn_PhoneNumber()">Cập
+                                nhật</button> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- update password -->
+                <!-- <div class="form-group row mt-5" >
+                    <button type="button" class="btn btn-secondary btn-lg btn-block">Đổi mật khẩu</button>
+                </div> -->
+                <!-- UpdateButton -->
+                <div class="form-group row mt-5 justify-content-center" ng-show="!showPassWord">
+                    <div class="w-50">
+                        <button type="button" class="btn btn-primary mb-2 btn-block"
+                                ng-click="btn_ChangePassWord()">
+                            Đổi mật khẩu
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group row mt-5" ng-show="showPassWord">
+                    <input type="text" name="" id="oldPass" value="<%=data.sign.Pass %> " hidden>
+                    <label for="user-id" class="col-md-2 offset-md-2 col-form-label">Mật khẩu cũ</label>
+                    <div class="input-group col-md-4">
+                        <input type="password" id="oldPassWord" name="oldPassWord" class="form-control disable">
+                    </div>
+                </div>
+                <div class="form-group row mt-2" ng-show="showPassWord">
+                    <label for="user-id" class="col-md-2 offset-md-2 col-form-label">Mật mới</label>
+                    <div class="input-group col-md-4">
+                        <input type="password" id="newPassWord" name="newPassWord" class="form-control disable">
+                    </div>
+                </div>
+                <div class="form-group row mt-2" ng-show="showPassWord">
+                    <label for="user-id" class="col-md-2 offset-md-2 col-form-label">Nhập lại mật khẩu</label>
+                    <div class="input-group col-md-4">
+                        <input type="password" id="reNewPassWord" name="reNewPassWord" class="form-control disable">
+                    </div>
+                </div>
+                <div class="form-group row mt-5 justify-content-center" ng-show="showPassWord">
+                    <div class="w-50">
+                        <button type="button" id="changepassword" class="btn btn-outline-primary mb-2 btn-block"
+                                ng-click="btn_ChangePassWord()">
+                            Cập nhật
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </main>
+
+    </div>
+
+</div>
+@section scripts{
+    <script type="text/javascript">
+        var app = angular.module('myApp', []);
+        app.controller('controller', function ($scope) {
+            $scope.First_name = $("#First_name").val();
+            $scope.showFirst_name = true;
+            $scope.btn_FirstName = function () {
+                $scope.showFirst_name = !$scope.showFirst_name;
+            }
+
+            $scope.showLast_name = false;
+            $scope.btn_LastName = function () {
+                $scope.showLast_name = !$scope.showLast_name;
+            }
+
+            $scope.showPhone_number = false;
+            $scope.btn_PhoneNumber = function () {
+                $scope.showPhone_number = !$scope.showPhone_number;
+            }
+            $scope.showPassWord = false;
+            $scope.btn_ChangePassWord = function () {
+                $scope.showPassWord = !$scope.showPassWord;
+            }
+        })
+    </script>
+    } 
+

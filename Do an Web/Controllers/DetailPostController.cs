@@ -1,4 +1,5 @@
 ﻿using Do_an_Web.Models;
+using Do_an_Web.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,41 @@ namespace Do_an_Web.Controllers
             }
           
         }
-       
+        [HttpPost]
+        public ActionResult SavePost(SavePost param)
+        {
+            try
+            {
+                var save = new savepost
+                {
+                    IDpost = param.Idpost,
+                    IDusers = param.Iduser
+
+                };
+                db.saveposts.Add(save);
+                db.SaveChanges();
+                return Json(200);
+            }catch(Exception e)
+            {
+                return Json(500);
+            }
+        }
+        [HttpPost]
+        public ActionResult DeleteSavePost(SavePost param)
+        {
+            try
+            {
+
+                var delete= db.saveposts.FirstOrDefault(p => p.IDpost == param.Idpost && p.IDusers == param.Iduser);
+                db.saveposts.Remove(delete);
+                db.SaveChanges();
+                return Json(200);
+            }
+            catch (Exception e)
+            {
+                return Json(500);
+            }
+        }
+
     }
 }

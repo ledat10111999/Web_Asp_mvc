@@ -1,4 +1,5 @@
 ﻿using Do_an_Web.Models;
+using Do_an_Web.ViewModel.Validate;
 using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
@@ -47,6 +48,7 @@ namespace Do_an_Web.ViewModel
         public IEnumerable<ward> wards { get; set; }
         public IEnumerable<street> streets { get; set; }
         [Required(ErrorMessage = "Nhập hình ảnh")]
+        [FileType("JPG,JPEG,PNG")]
         public HttpPostedFileBase[] image { get; set; }
         public enum DoiTuong
         {

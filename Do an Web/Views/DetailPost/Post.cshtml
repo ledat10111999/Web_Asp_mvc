@@ -35,6 +35,7 @@
 <!-- Tên thông tin phòng trọ -->
 <div class="container">
     <h3 class="text-danger">@Html.DisplayFor(p => p.TieuDe) </h3>
+    <input hidden value="@Model.ID" id="Idpost"/>
 </div>
 <!-- Menu tùy chỉnh phòng trọ -->
 <nav class="navbar navbar-expend-sm navbar-light bg-light" style="margin-top: 20px;">
@@ -63,22 +64,22 @@
 
                             @Html.ActionLink("Sửa tin", "UpdatePost", "Post", new { id = Model.ID }, new { @class = "nav-link font-weight-bold text-info", id = "updatePost" })
                         </li>
-                        <li class="nav-item" id="deletepost"><button class=" btn btn-link  font-weight-bold text-info " style="text-decoration: none;"> Xóa tin</button></li>
+                        <li class="nav-item" id="deletepost"><button id="deleteSavePost" class=" btn btn-link  font-weight-bold text-info " style="text-decoration: none;"> Xóa bài</button></li>
                     }
                     else if (Session["ID"] != null)
                     {
                         if (ViewBag.SavePost != null && ViewBag.SavePost.IDusers == Int32.Parse(Session["ID"].ToString()))
                         {
-                            <li class="nav-item" id="deleteSavePost">
-                                <a href=""
-                                   class="nav-link font-weight-bold text-info"> Bỏ Lưu</a>
-                            </li>
+                <li class="nav-item">
+                    <input hidden value="@Session["ID"]" id="Iduser" />
+                    <button id="deleteSavePost" class=" btn btn-link  font-weight-bold text-info " style="text-decoration: none;"> Bỏ Lưu</button>
+                </li>
                         }
                         else
                         {
-                            <li class="nav-item" id="savepost">
-                                <a href=""
-                                   class="nav-link font-weight-bold text-info">Lưu bài</a>
+                            <li class="nav-item" >
+                                <input hidden value="@Session["ID"]" id="Iduser" />
+                                <button id="savepost" class=" btn btn-link  font-weight-bold text-info " style="text-decoration: none;"> Lưu bài</button>
                             </li>
 }
 
@@ -94,13 +95,17 @@
         <div class="col-md-8">
 
             <input type="text" hidden value="@Model.ID" id="IDpost">
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col-md-12">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            @for (var i =1;i< Model.imgs.Count;i++)
+                            {
+                                <li data-target="#carouselExampleIndicators" data-slide-to="@i"></li>
+                            }
+
+                          
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
@@ -130,6 +135,7 @@
                     </div>
                 </div>
             </div>
+
             <table class="table table-bordered">
                 <tbody>
                     <tr>
@@ -158,7 +164,7 @@
                         <th scope="row">Đối tượng</th>
                         <td>@Model.DoiTuongChoThue</td>
                         <th>Số điện thoại</th>
-                        <td>0</td>
+                        <td>0 @Model.SDT</td>
                     </tr>
 
                     <tr>
@@ -241,6 +247,53 @@
 
 
             })
+            $('#savepost').click(function (e) {
+                var IDuser = $("#Iduser").val();
+                var IDpost = $("#Idpost").val();
+                var parmam = {
+                    Iduser: IDuser,
+                    Idpost: IDpost
+                }
+               
+                var base_url = location.protocol + '//' + document.domain + ':' + location.port;
+                $.ajax({
+                    url: base_url + '/DetailPost/SavePost',
+                    type: 'post',
+                    data: parmam,
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res == 200) {
+                            $('#savepost')
+                                .attr('id', "deleteSavePost")
+                                .text("Bỏ lưu");
+                        }
+                    }
+                })
+            })
+            $("#deleteSavePost").click(() => {
+                var IDuser = $("#Iduser").val();
+                var IDpost = $("#Idpost").val();
+                var parmam = {
+                    Iduser: IDuser,
+                    Idpost: IDpost
+                }
+                
+                var base_url = location.protocol + '//' + document.domain + ':' + location.port;
+                $.ajax({
+                    url: base_url + '/DetailPost/DeleteSavePost',
+                    type: 'post',
+                    data: parmam,
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res == 200) {
+                            $('#deleteSavePost')
+                                .attr('id', "savepost")
+                                .text("Lưu bài");
+                        }
+                    }
+                })
+            })
+        
         })
     </script>
 

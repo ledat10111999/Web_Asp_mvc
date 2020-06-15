@@ -8,7 +8,10 @@
     @Styles.Render("~/Content/bootstrap.min.css")
     @Styles.Render("~/Content/Style.css")
     @Scripts.Render("~/Scripts/jquery-3.4.1.min.js")
-<script src="~/Scripts/angular.min.js"></script>
+    @RenderSection("library", false);
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
 </head>
 <body  ng-app="myApp" ng-controller="controller">
     <!-- Thanh Nav -->
