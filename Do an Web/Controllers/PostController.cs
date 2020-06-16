@@ -146,7 +146,7 @@ namespace Do_an_Web.Controllers
                 update_at = date,
                 DiaChiChinhXac = param.DiaChiChinhXac,
                 DienTich = param.DienTich,
-                display = true,
+                display = false,
                 DoiTuongChoThue = param.DoiTuongChoThue,
                 Gia = param.Gia,
                 IDimg = param.IDuser,
@@ -161,6 +161,7 @@ namespace Do_an_Web.Controllers
                 tenTp = param.tenTp,
                 ThongTinMoTa = param.ThongTinMoTa,
                 TieuDe = param.TieuDe,
+                
             };
             haha.posts.Add(newpost);
             haha.SaveChanges();

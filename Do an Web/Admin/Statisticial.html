@@ -1,0 +1,67 @@
+﻿
+
+      
+
+
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+        <p class="highcharts-description">
+            Thống kê theo từng tháng
+        </p>
+    </figure>
+
+
+
+<script type="text/javascript">
+Highcharts.chart('container', {
+
+    title: {
+        text: 'Số tiền thu được'
+    },
+
+    subtitle: {
+        text: 'Tro123.com'
+    },
+
+    yAxis: {
+        title: {
+            text: 'Number of Money'
+        }
+    },
+
+    xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+
+
+    series: [{
+        name: 'Số tiền',
+        data: [100000,200000,300000,400000,300000,600000,650000,800000,900000,1000000,1100000,1200000]
+
+    }],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+
+});
+ </script>

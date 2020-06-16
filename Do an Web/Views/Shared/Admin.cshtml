@@ -1,0 +1,75 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Styles.Render("~/Content/Style.css")
+    @Scripts.Render("~/Scripts/jquery-3.4.1.min.js")
+
+
+    <script src="~/Scripts/angular.min.js"></script>
+
+    <script src="~/Scripts/highcharts.js"></script>
+    <script src="~/Scripts/series-label.js"></script>
+    <script src="~/Scripts/export-data.js"></script>
+    <script src="~/Scripts/exporting.js"></script>
+    <script src="~/Scripts/accessibility.js"></script>
+
+    <link href="~/Content/jquery-confirm.min.css" rel="stylesheet" />
+    @RenderSection("library", false);
+</head>
+<body >
+    <!-- Thanh Nav -->
+    <div class="Navigator">
+        <nav class="navbar navbar-expend-sm navbar-light bg-light">
+            <div class="container">
+                <!-- Logo -->
+                <a href="/" class="nav-brand"><img height="120" src="~/img/logo2.png" alt="logo"></a>
+                <!-- Nav item signin/register -->
+                <ul class="nav ml-auto">
+                    @Html.Partial("_LoginPartial")
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Big Banner -->
+    @RenderSection("BigBanner", required: false)
+
+    <!-- Thanh Nav -->
+    @RenderSection("Nav", required: false);
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+
+    <script src="~/Scripts/popper.min.js"></script>
+    @Scripts.Render("~/Scripts/bootstrap2.min.js")
+
+    <script type="text/javascript">
+        function signout() {
+            $("#signout").click(() => {
+                var base_url = location.protocol + "//" + document.domain + ":" + location.port;
+                $.ajax({
+                    url: base_url + "/Account/SignOut",
+                    method: "DELETE",
+                    dataType: "json",
+                    success: (res) => {
+                        if (res && res == 200) {
+                            location.reload();
+                        }
+                    }
+                })
+            })
+        }
+        $(document).ready(() => {
+            new signout();
+        })
+
+    </script>
+    @RenderSection("scripts", false)
+</body>
+</html>

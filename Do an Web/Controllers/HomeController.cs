@@ -19,7 +19,7 @@ namespace Do_an_Web.Controllers
         public ActionResult List()
         {
            
-            var p = db.posts.ToList();
+            var p = db.posts.Where(o=>o.display != false).ToList();
             var list = JsonConvert.SerializeObject(p,
     Formatting.None,
     new JsonSerializerSettings()

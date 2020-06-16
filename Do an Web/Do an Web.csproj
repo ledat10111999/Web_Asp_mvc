@@ -255,6 +255,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DetailPostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
@@ -319,6 +320,7 @@
     <Compile Include="ViewModel\register.cs" />
     <Compile Include="ViewModel\SavePost.cs" />
     <Compile Include="ViewModel\ThongTinMoTa.cs" />
+    <Compile Include="ViewModel\updateFirstName.cs" />
     <Compile Include="ViewModel\UpdatePostViewModel.cs" />
     <Compile Include="ViewModel\uppost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -326,7 +328,12 @@
     <Compile Include="ViewModel\Validate\ValidateImg.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\BrowsePost.html" />
+    <Content Include="Admin\Statisticial.html" />
+    <Content Include="Admin\User.html" />
     <Content Include="Content\admin.css" />
+    <Content Include="Admin\Home.html" />
+    <Content Include="Content\Admin.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -506,6 +513,7 @@
       <DependentUpon>data_base.edmx</DependentUpon>
       <LastGenOutput>data_base.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\accessibility.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angularRouter.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -561,6 +569,9 @@
     <Content Include="Content\CssFont\scss\_variables.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap2.min.js" />
+    <Content Include="Scripts\export-data.js" />
+    <Content Include="Scripts\exporting.js" />
+    <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -575,6 +586,7 @@
     <Content Include="Scripts\newpost.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\searchbar.js" />
+    <Content Include="Scripts\series-label.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -600,6 +612,9 @@
     <Content Include="Views\User\Saved.cshtml" />
     <Content Include="Views\Shared\AdminLayout.cshtml" />
     <Content Include="Views\Province\ListProvince.cshtml" />
+    <Content Include="Views\Admin\Dashboard.cshtml" />
+    <Content Include="Views\Shared\Admin.cshtml" />
+    <Content Include="Views\Admin\BrowsePost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

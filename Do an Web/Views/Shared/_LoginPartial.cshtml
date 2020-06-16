@@ -27,7 +27,7 @@
         if (Session["QuyenHan"].ToString() == "admin")
         {
             <li style="margin-right: 10px;" class="nav-item  font-weight-bold ">
-                <a href="/admin ">  Trang quản trị </a>
+               @Html.ActionLink("Trang quản trị","Dashboard","Admin" )
             </li>
         }
         <li class="nav-item">

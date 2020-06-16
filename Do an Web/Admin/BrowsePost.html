@@ -1,0 +1,52 @@
+﻿
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">Welcome, Admin</h1>
+</div>
+
+<div class="manager-table">
+
+    <table class="table">
+
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" class="text-center">ID</th>
+                <th scope="col" class="text-center">Tiêu đề</th>
+                <th scope="col" class="text-center">Giá cho thuê</th>
+                <th scope="col" class="text-center">Địa chỉ</th>
+                <th scope="col" class="text-center">Đối tượng cho thuê</th>
+                <th scope="col" class="text-center">Diện tích</th>
+                <th scope="col" class="text-center">Ngày đăng</th>
+
+                <th scope="col" class="text-center"></th>
+                <th scope="col" class="text-center"></th>
+                <th scope="col" class="text-center"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr ng-repeat="p in data ">
+                
+                <th scope="row" ng-model="id">{{p.ID}} </th>
+                <td scope="col" class="text-center">{{p.TieuDe}}</td>
+                <td scope="col" class="text-center">{{p.Gia}} </td>
+                <td scope="col" class="text-center">{{p.tenDuong}} - {{p.tenDuong}}- {{p.tenTp}}</td>
+                <td scope="col" class="text-center">{{p.DoiTuongChoThue}} </td>
+                <td scope="col" class="text-center">{{p.DienTich}}</td>
+                <td scope="col" class="text-center">{{p.created_at}} </td>
+                <td><button type="button" class="btn btn-outline-success btn-block font-weight-bold  " ng-click="my(p.ID)">Đăng</button></td>
+                <td><button type="button" class="btn btn-outline-danger btn-block font-weight-bold" ng-click="delete(p.ID)">Xóa</button></td>
+                <td><a href="/admin/post/{{p.ID}}" class="btn btn-outline-primary font-weight-bold">Chi Tiết</a></td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>
+<script src="../Scripts/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+ 
+    
+
+</script>
+

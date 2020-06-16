@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+@section library{
+
+    <script src="~/Scripts/angularRouter.js"></script>
+}
+<!-- Sidebar Menu -->
+
+<div class="row" ng-app="myApp">
+    <nav class="col-lg-2 d-none d-lg-block bg-light sidebar">
+        <div class="user-info">
+            <a href="/admin" class="clearfix">
+                <div class="user-avatar">
+                    <img style="width:100px" src="~/img/boy_1544603222.png" alt="avatar">
+                </div>
+                <div class="user-meta" style="margin-top: 20px">
+                    <div class="inner">
+                        <div class="user-name">
+                            @Session["username"].ToString()
+                        </div>
+                        <div class="user-verify font-weight-bold" style="color: #555; font-size: 0.9rem;">
+                            Admin
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <ul class="nav nav-sidebar">
+            <li class="nav-item">
+                <a href="#!/listpost" class="nav-link font-weight-bold">Thống kê tin đăng</a>
+            </li>
+            <li class="nav-item">
+                <a href="#!/DuyetPost" class="nav-link font-weight-bold">Quản lý tin đăng</a>
+            </li>
+            <li class="nav-item">
+                <a href="#!/User" class="nav-link font-weight-bold">Quản lý người dùng</a>
+            </li>
+            <li class="nav-item">
+                <a href="#!/Statisticial" class="nav-link font-weight-bold">
+                    Quản lý doanh
+                    thu
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div ng-view class="ml-sm-auto col-md-10 text-center"></div>
+</div>
+
+
+<script type="text/javascript">
+
+    var app = angular.module("myApp", ["ngRoute"])
+        .config(($routeProvider, $locationProvider) => {
+
+            $routeProvider
+                .when('/listpost', {
+                    templateUrl: '/Admin/Home.html',
+                    controller: 'listPost'
+                })
+                .when('/DuyetPost', {
+                    templateUrl: '/Admin/BrowsePost.html',
+                    controller: 'adminPost'
+                })
+                .when('/User', {
+                    templateUrl: '/Admin/User.html',
+                    controller: 'listuser'
+                })
+                .when('/Statisticial', {
+                    templateUrl: '/Admin/Statisticial.html',
+                    controller: 'listuser'
+                })
+            $locationProvider.html5Mode(false).hashPrefix('!');
+        })
+        .controller("listPost", function ($scope, $http) {
+            var base_url = location.protocol + '//' + document.domain + ':' + location.port;
+            $http.get(base_url + '/Admin/List').then((result) => {
+                $scope.data = result.data;
+
+            })
+            
+            $http.post(base_url + '/Admin/Listprovince').then((result) => {
+                $scope.province = result.data;
+               
+
+            })
+            $scope.search = {};
+            $scope.queryBy = '$';
+            $scope.myClick = function (tenTp, loaiTin) {
+                $scope.search = {
+                    tenTp: $('#provinces').val(),
+                    tenQuan: $("#districts").val(),
+                    tenPhuong: $("#wards").val(),
+                    ThongTinMoTa: $("#ThongTinMoTa").val()
+                }
+                $scope.hienthi = false;
+                $scope.showresult = true;
+            }
+
+        })
+        .controller('adminPost', function ($scope, $http) {
+            var base_url = location.protocol + '//' + document.domain + ':' + location.port;
+            $http.post(base_url + '/Admin/adminList').then((result) => {
+                $scope.data = result.data;
+
+            })
+           
+            $scope.my = function (id) {
+                $.ajax({
+                    url: base_url + "/Admin/UpPost/",
+                    method: "PUT",
+                    dataType: 'json',
+                    data: {
+                        id: id
+                    },
+                    success: function (res) {
+                        if (res && res == 200) {
+                            alert("Đăng thành công")
+                                location.reload();
+                          
+
+                        }
+                    }
+                })
+               
+            }
+            $scope.delete = function (id) {
+                $.ajax({
+                    url: base_url + "/Admin/DeletePost/",
+                    method: "DELETE",
+                    dataType: 'json',
+                    data: {
+                        id: id
+                    },
+                    success: function (res) {
+                        if (res && res == 200) {
+                            alert("xóa thành công")
+                            location.reload();
+
+
+                        }
+                    }
+                })
+            }
+           
+          
+
+        })
+        .controller('listuser', function ($scope, $http) {
+            var base_url = location.protocol + '//' + document.domain + ':' + location.port;
+            $http.post(base_url + '/Admin/ListUser').then((result) => {
+                $scope.data = result.data;
+
+            })
+        })
+
+</script>
+
+@section scripts{
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.confirm.min.js"></script>
+    
+}
+</body>
+

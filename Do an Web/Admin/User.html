@@ -1,0 +1,60 @@
+﻿<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">Welcome, Admin</h1>
+</div>
+<div class="row">
+    <div class="col-md-5 ">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Tìm kiếm</span>
+            </div>
+            <input type="text" ng-model="search.Email" class="form-control w-50 " placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+    </div>
+    <div class="col-md-3 float-right">
+        <div class="form-group">
+            <select id="inputState" ng-model="Sort" class="form-control w-100">
+                <option selected value="">Sort by</option>
+                <option value="Created_at">Ngày tạo</option>
+                <option value="Email"> Email</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="manager-table">
+    <table class="table  ">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" class="text-center">ID</th>
+                <th scope="col" class="text-center">Email</th>
+                <th scope="col" class="text-center">Họ</th>
+                <th scope="col" class="text-center">Tên</th>
+                <th scope="col" class="text-center">Số điện thoại</th>
+                <th scope="col" class="text-center">Ngày tạo</th>
+                <th scope="col" class="text-center">Ngày cập nhật</th>
+                <th scope="col" class="text-center"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr ng-repeat='x in data | filter: search  |  orderBy: Sort'>
+                <th scope="col"> {{x.ID}}</th>
+                <td scope="col" class="text-left">{{x.Email}} </td>
+                <td scope="col" class="text-center">{{x.First_name}}</td>
+                <td scope="col" class="text-center">{{x.Last_name}}</td>
+                <td scope="col" class="text-center">0{{x.SDT}}</td>
+                <td scope="col" class="text-center">{{x.Created_at}} </td>
+                <td scope="col" class="text-center">{{x.Update_at}}</td>
+                <td>
+                    <a href="/admin/posted/{{x.ID}}" class="nav-link">
+                        <button type="button" id="post" class="btn btn-outline-success btn-block font-weight-bold">Bài viết đã đăng</button>
+                    </a>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+</div>
